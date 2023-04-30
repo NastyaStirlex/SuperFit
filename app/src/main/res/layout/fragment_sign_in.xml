@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.signin.SignInFragment"
+    android:background="@drawable/background">
+
+
+    <TextView
+        android:id="@+id/appnameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="47dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
+        android:textSize="64sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/signUpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="34dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:insetTop="4dp"
+        android:insetRight="4dp"
+        android:insetBottom="0dp"
+        android:letterSpacing="0"
+        android:paddingHorizontal="4dp"
+        android:paddingVertical="0dp"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp"
+        android:paddingRight="0dp"
+        android:paddingBottom="0dp"
+        android:text="@string/signup"
+        android:textSize="24sp"
+        app:backgroundTint="@color/transparent"
+        app:iconPadding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/signUpImageButton"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_arrow_right"
+        app:backgroundTint="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/signUpButton"
+        app:layout_constraintStart_toEndOf="@+id/signUpButton"
+        app:layout_constraintTop_toTopOf="@+id/signUpButton" />
+
+    <ImageButton
+        android:id="@+id/signInImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_right"
+        app:backgroundTint="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/signInButton"
+        app:layout_constraintTop_toTopOf="@+id/signInButton"
+        tools:layout_editor_absoluteX="189dp" />
+
+    <EditText
+        android:id="@+id/signInUsernameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="77dp"
+        android:backgroundTint="@color/white"
+        android:ems="10"
+        android:fontFamily="@font/montserrat"
+        android:hint="@string/username"
+        android:inputType="text"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appnameTextView" />
+
+    <Button
+        android:id="@+id/signInButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:letterSpacing="0"
+        android:paddingHorizontal="4dp"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp"
+        android:paddingRight="0dp"
+        android:paddingBottom="0dp"
+        android:text="@string/signin"
+        android:textSize="24sp"
+        app:backgroundTint="@color/transparent"
+        app:iconPadding="0dp"
+        app:layout_constraintStart_toStartOf="@+id/signInUsernameEditText"
+        app:layout_constraintTop_toBottomOf="@+id/signInUsernameEditText" />
+</androidx.constraintlayout.widget.ConstraintLayout>
