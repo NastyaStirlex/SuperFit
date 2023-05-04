@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/authorization_nav_graph"
+    app:startDestination="@id/main_nav_graph">
+
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.nastirlex.superfit.presentation.signin.SignInFragment"
+        android:label="fragment_sign_in">
+
+        <action
+            android:id="@+id/action_signInFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+
+        <action
+            android:id="@+id/action_signInFragment_to_signInPasswordFragment"
+            app:destination="@id/signInPasswordFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.nastirlex.superfit.presentation.signup.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_main_nav_graph"
+            app:destination="@id/main_nav_graph" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signInPasswordFragment"
+        android:name="com.nastirlex.superfit.presentation.sign_in_password.SignInPasswordFragment"
+        android:label="fragment_sign_in_password"
+        tools:layout="@layout/fragment_sign_in_password" >
+        <action
+            android:id="@+id/action_signInPasswordFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+    <include app:graph="@navigation/main_nav_graph" />
+
+</navigation>

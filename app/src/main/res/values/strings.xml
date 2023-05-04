@@ -1,7 +1,25 @@
 <resources>
     <string name="app_name">SuperFit</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="signup">Sign Up</string>
     <string name="signin">Sign In</string>
     <string name="username">UserName</string>
+    <string name="email">Email</string>
+    <string name="code">Code</string>
+    <string name="repeat_code">RepeatCode</string>
+
+    <string name="validation_error_empty_fields">Все поля должны быть заполнены.</string>
+    <string name="validation_error_mismatched_passwords">Пароли не совпадают.</string>
+    <string name="validation_error_invalid_email">Некорректный email.</string>
+    <string name="validation_error_code_contains_zero">Пароль не может содержать цифру 0.</string>
+    <string name="validation_error_invalid_code_length">Длина пароля должна быть равна 4.</string>
+
+    <string name="validation_empty_username">Пожалуйста, введите логин пользователя.</string>
+
+    <!-- Main Fragment -->
+    <string name="my_body">My body</string>
+    <string name="details">Details</string>
+    <string name="last_exercises">Last exercises</string>
+    <string name="see_all">See all</string>
+    <string name="sign_out">Sign Out</string>
+
 </resources>
