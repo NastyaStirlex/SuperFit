@@ -45,7 +45,7 @@ class SignInFragment : Fragment() {
 
                 is SignInState.Success -> {
                     val action = SignInFragmentDirections.actionSignInFragmentToSignInPasswordFragment(
-                        //username = it.username
+                        username = it.username
                     )
                     findNavController().navigate(action)
                 }
