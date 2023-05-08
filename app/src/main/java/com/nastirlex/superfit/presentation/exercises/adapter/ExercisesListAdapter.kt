@@ -14,28 +14,28 @@ class ExercisesListAdapter :
     private val exercises = arrayOf(
         Exercise(
             R.drawable.push_up,
-            R.string.exercise_push_ups,
-            R.string.exercise_push_ups_description,
+            R.string.push_ups_title,
+            R.string.push_ups_description,
         ),
         Exercise(
             R.drawable.plank,
-            R.string.exercise_plank,
-            R.string.exercise_plank_description
+            R.string.plank_title,
+            R.string.plank_description
         ),
         Exercise(
             R.drawable.squats,
-            R.string.exercise_squats,
-            R.string.exercise_squats_description
+            R.string.squats_title,
+            R.string.squats_description
         ),
         Exercise(
             R.drawable.crunch,
-            R.string.exercise_crunch,
-            R.string.exercise_crunch_description
+            R.string.crunch_title,
+            R.string.crunch_description
         ),
         Exercise(
             R.drawable.running,
-            R.string.exercise_running,
-            R.string.exercise_running_description
+            R.string.running_title,
+            R.string.running_description
         )
     )
 
