@@ -11,7 +11,7 @@ import com.nastirlex.superfit.databinding.ItemExercisesListBinding
 class ExercisesListAdapter :
     RecyclerView.Adapter<ExercisesListAdapter.ExercisesListViewHolder>() {
 
-    private val exercises = arrayOf(
+    val exercises = arrayOf(
         Exercise(
             R.drawable.push_up,
             R.string.push_ups_title,
