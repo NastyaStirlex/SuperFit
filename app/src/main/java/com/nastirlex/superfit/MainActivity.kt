@@ -6,6 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.nastirlex.superfit.databinding.ActivityMainBinding
+import com.nastirlex.superfit.net.EncryptedSharedPref
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,6 +18,13 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val sharedPrefs = EncryptedSharedPref(applicationContext)
+        val isFirstRun = sharedPrefs.getFirstRun()
+
+        if (isFirstRun) {
+            sharedPrefs.saveFirstRun(false)
+        }
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.activity_main_nav_host) as NavHostFragment
