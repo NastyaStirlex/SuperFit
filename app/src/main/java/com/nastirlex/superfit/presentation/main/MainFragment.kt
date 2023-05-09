@@ -38,11 +38,11 @@ class MainFragment : Fragment() {
         mainViewModel.mainStateLiveMutable.observe(viewLifecycleOwner) {
             when (it) {
                 MainState.SuccessfulSignOut -> {
-                    //findNavController().navigate(R.id.sign_in_nav_graph)
+                    findNavController().navigate(R.id.sign_in_nav_graph)
                 }
 
                 MainState.LastExercisesEmpty -> {
-                    binding.lastExercisesGroup.visibility = View.GONE
+                    binding.lastExercisesGroup.visibility = View.INVISIBLE
                 }
 
                 else -> {}

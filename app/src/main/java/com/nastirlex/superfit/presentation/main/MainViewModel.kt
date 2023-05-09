@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val trainingRepositoryImpl: TrainingRepositoryImpl,
-    private val deleteUserInfoUsecase: DeleteUserInfoUseCase
+    private val deleteUserInfoUseCase: DeleteUserInfoUseCase
 ): ViewModel() {
 
     private val _mainStateLiveMutable = MutableLiveData<MainState>()
@@ -35,7 +35,7 @@ class MainViewModel @Inject constructor(
     }
 
     private fun signOut() = viewModelScope.launch(Dispatchers.IO) {
-        deleteUserInfoUsecase.execute()
+        deleteUserInfoUseCase.execute()
         _mainStateLiveMutable.postValue(MainState.SuccessfulSignOut)
     }
 
