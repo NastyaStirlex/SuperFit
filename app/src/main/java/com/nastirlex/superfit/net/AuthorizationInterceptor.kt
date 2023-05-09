@@ -1,14 +1,12 @@
 package com.nastirlex.superfit.net
 
-import android.content.Context
-import com.nastirlex.superfit.domain.GetTokenUsecase
-import dagger.hilt.android.qualifiers.ApplicationContext
+import com.nastirlex.superfit.domain.GetTokenUseCase
 import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
 
 
-class AuthorizationInterceptor @Inject constructor(private val getTokenUsecase: GetTokenUsecase) :
+class AuthorizationInterceptor @Inject constructor(private val getTokenUsecase: GetTokenUseCase) :
     Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {

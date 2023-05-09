@@ -12,31 +12,34 @@
         tools:layout="@layout/fragment_sign_in" >
 
         <action
-            android:id="@+id/action_signInFragment_to_signInPasswordFragment"
-            app:destination="@id/signInPasswordFragment" >
+            android:id="@+id/action_signInFragment_to_sign_up_nav_graph"
+            app:destination="@id/sign_up_nav_graph" />
+
+        <action
+            android:id="@+id/action_signInFragment_to_signInCodeFragment"
+            app:destination="@id/signInCodeFragment" >
 
             <argument
                 android:name="username"
                 app:argType="string" />
 
         </action>
-        <action
-            android:id="@+id/action_signInFragment_to_sign_up_nav_graph"
-            app:destination="@id/sign_up_nav_graph" />
 
     </fragment>
 
+    <include app:graph="@navigation/sign_up_nav_graph" />
+
     <fragment
-        android:id="@+id/signInPasswordFragment"
-        android:name="com.nastirlex.superfit.presentation.sign_in_password.SignInPasswordFragment"
-        android:label="fragment_sign_in_password"
-        tools:layout="@layout/fragment_sign_in_password" >
+        android:id="@+id/signInCodeFragment"
+        android:name="com.nastirlex.superfit.presentation.sign_in_code.SignInCodeFragment"
+        android:label="fragment_sign_in_code"
+        tools:layout="@layout/fragment_sign_in_code" >
 
         <argument
             android:name="username"
             app:argType="string" />
 
     </fragment>
-    <include app:graph="@navigation/sign_up_nav_graph" />
+    <include app:graph="@navigation/main_nav_graph" />
 
 </navigation>

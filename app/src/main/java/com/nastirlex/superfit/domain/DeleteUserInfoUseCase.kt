@@ -3,7 +3,7 @@ package com.nastirlex.superfit.domain
 import com.nastirlex.superfit.net.EncryptedSharedPref
 import javax.inject.Inject
 
-class DeleteUserInfoUsecase @Inject constructor(
+class DeleteUserInfoUseCase @Inject constructor(
     private val encryptedSharedPreferences: EncryptedSharedPref
 ) {
     fun execute() {

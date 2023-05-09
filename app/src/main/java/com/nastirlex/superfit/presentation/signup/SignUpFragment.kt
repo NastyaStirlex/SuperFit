@@ -89,7 +89,7 @@ class SignUpFragment : Fragment() {
 
     private fun setupOnBackSignInButtonClick() {
         binding.signUpSignInButton.setOnClickListener {
-            findNavController().navigateUp()
+            findNavController().navigate(R.id.sign_in_nav_graph)
         }
     }
 

@@ -2,7 +2,7 @@ package com.nastirlex.superfit.net.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class RegistrationBodyDto(
+data class AuthorizationBodyDto(
     @SerializedName("login")
     val email: String,
 

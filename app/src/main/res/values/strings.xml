@@ -12,6 +12,7 @@
     <string name="validation_error_invalid_email">Некорректный email.</string>
     <string name="validation_error_code_contains_zero">Пароль не может содержать цифру 0.</string>
     <string name="validation_error_invalid_code_length">Длина пароля должна быть равна 4.</string>
+    <string name="sign_in_failed">Неверный логин или пароль.</string>
 
     <string name="validation_empty_username">Пожалуйста, введите логин пользователя.</string>
 

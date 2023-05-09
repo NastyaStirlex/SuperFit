@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nastirlex.superfit.domain.DeleteUserInfoUsecase
+import com.nastirlex.superfit.domain.DeleteUserInfoUseCase
 import com.nastirlex.superfit.net.repositoryImpl.TrainingRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val trainingRepositoryImpl: TrainingRepositoryImpl,
-    private val deleteUserInfoUsecase: DeleteUserInfoUsecase
+    private val deleteUserInfoUsecase: DeleteUserInfoUseCase
 ): ViewModel() {
 
     private val _mainStateLiveMutable = MutableLiveData<MainState>()

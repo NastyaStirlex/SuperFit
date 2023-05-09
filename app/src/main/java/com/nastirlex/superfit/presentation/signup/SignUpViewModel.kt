@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nastirlex.superfit.net.dto.RegistrationBodyDto
+import com.nastirlex.superfit.net.dto.AuthorizationBodyDto
 import com.nastirlex.superfit.net.repositoryImpl.AuthRepositoryImpl
 import com.nastirlex.superfit.presentation.utils.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -48,7 +48,7 @@ class SignUpViewModel @Inject constructor(
             } else {
                 try {
                     authRepositoryImpl.register(
-                        RegistrationBodyDto(
+                        AuthorizationBodyDto(
                             email = email, code = code.toInt()
                         )
                     )
