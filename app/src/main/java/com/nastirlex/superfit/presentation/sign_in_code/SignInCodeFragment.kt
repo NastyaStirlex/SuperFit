@@ -11,6 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.nastirlex.superfit.R
 import com.nastirlex.superfit.databinding.FragmentSignInCodeBinding
+import com.nastirlex.superfit.presentation.signup.SignUpState
+import com.nastirlex.superfit.presentation.utils.MessageDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -64,7 +66,26 @@ class SignInCodeFragment : Fragment() {
                     findNavController().navigate(R.id.main_nav_graph)
                 }
 
-                else -> {}
+                is SignInCodeState.HttpError -> {
+                    MessageDialogFragment(R.string.http_error).show(
+                        childFragmentManager,
+                        MessageDialogFragment.TAG
+                    )
+                }
+
+                is SignInCodeState.NetworkError -> {
+                    MessageDialogFragment(R.string.network_error).show(
+                        childFragmentManager,
+                        MessageDialogFragment.TAG
+                    )
+                }
+
+                is SignInCodeState.UnknownError -> {
+                    MessageDialogFragment(R.string.unknown_error).show(
+                        childFragmentManager,
+                        MessageDialogFragment.TAG
+                    )
+                }
             }
         }
     }

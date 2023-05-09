@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.nastirlex.superfit.R
 import com.nastirlex.superfit.databinding.FragmentSignUpBinding
+import com.nastirlex.superfit.presentation.utils.MessageDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,56 +33,73 @@ class SignUpFragment : Fragment() {
     }
 
     private fun setupSignUpStateObserver() {
-        signUpViewModel.signUpStateLive.observe(viewLifecycleOwner) {
+        signUpViewModel.signUpState.observe(viewLifecycleOwner) {
             when (it) {
                 is SignUpState.SuccessfulSignUp -> {
-                    Toast.makeText(requireContext(), "Successful sign up", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.main_nav_graph)
                 }
 
                 is SignUpState.UnsuccessfulSignUp -> {
-                    Toast.makeText(requireContext(), "Unsuccessful sign up", Toast.LENGTH_SHORT)
-                        .show()
+                    MessageDialogFragment(R.string.duplicate_user).show(
+                        childFragmentManager,
+                        MessageDialogFragment.TAG
+                    )
                 }
 
                 is SignUpState.EmptyFields -> {
-                    Toast.makeText(
-                        requireContext(),
-                        R.string.validation_error_empty_fields,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    MessageDialogFragment(R.string.validation_error_empty_fields).show(
+                        childFragmentManager,
+                        MessageDialogFragment.TAG
+                    )
                 }
 
                 is SignUpState.MismatchedPasswords -> {
-                    Toast.makeText(
-                        requireContext(),
-                        R.string.validation_error_mismatched_passwords,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    MessageDialogFragment(R.string.validation_error_mismatched_passwords).show(
+                        childFragmentManager,
+                        MessageDialogFragment.TAG
+                    )
                 }
 
                 is SignUpState.InvalidEmail -> {
-                    Toast.makeText(
-                        requireContext(),
-                        R.string.validation_error_invalid_email,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    MessageDialogFragment(R.string.validation_error_invalid_email).show(
+                        childFragmentManager,
+                        MessageDialogFragment.TAG
+                    )
                 }
 
                 is SignUpState.CodeContainsZero -> {
-                    Toast.makeText(
-                        requireContext(),
-                        R.string.validation_error_code_contains_zero,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    MessageDialogFragment(R.string.validation_error_code_contains_zero).show(
+                        childFragmentManager,
+                        MessageDialogFragment.TAG
+                    )
                 }
 
                 is SignUpState.InvalidCodeLength -> {
-                    Toast.makeText(
-                        requireContext(),
-                        R.string.validation_error_invalid_code_length,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    MessageDialogFragment(R.string.validation_error_invalid_code_length).show(
+                        childFragmentManager,
+                        MessageDialogFragment.TAG
+                    )
+                }
+
+                is SignUpState.HttpError -> {
+                    MessageDialogFragment(R.string.http_error).show(
+                        childFragmentManager,
+                        MessageDialogFragment.TAG
+                    )
+                }
+
+                is SignUpState.NetworkError -> {
+                    MessageDialogFragment(R.string.network_error).show(
+                        childFragmentManager,
+                        MessageDialogFragment.TAG
+                    )
+                }
+
+                is SignUpState.UnknownError -> {
+                    MessageDialogFragment(R.string.unknown_error).show(
+                        childFragmentManager,
+                        MessageDialogFragment.TAG
+                    )
                 }
             }
         }

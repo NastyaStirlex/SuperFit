@@ -8,4 +8,7 @@ sealed class SignUpState {
     object InvalidEmail: SignUpState()
     object CodeContainsZero: SignUpState()
     object InvalidCodeLength: SignUpState()
+    object HttpError: SignUpState()
+    object NetworkError: SignUpState()
+    object UnknownError: SignUpState()
 }

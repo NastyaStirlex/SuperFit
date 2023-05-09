@@ -6,6 +6,9 @@
     <string name="email">Email</string>
     <string name="code">Code</string>
     <string name="repeat_code">RepeatCode</string>
+    
+    <!-- Sign Up Fragment -->
+    <string name="duplicate_user">Пользователь уже существует.</string>
 
     <string name="validation_error_empty_fields">Все поля должны быть заполнены.</string>
     <string name="validation_error_mismatched_passwords">Пароли не совпадают.</string>
@@ -36,5 +39,12 @@
     <string name="crunch_description">It involves the entire abs, but primarily it works the rectus abdominis muscle.</string>
     <string name="running_title">Running</string>
     <string name="running_description">It develops endurance, strengthens the legs and the cardiovascular system.</string>
+
+    <string name="unknown_error">Произошла неизвестная ошибка.</string>
+    <string name="http_error">Произошла ошибка при обращении к серверу.</string>
+    <string name="network_error">Не удается подключиться к серверу.</string>
+
+    <!-- Dialog Fragment -->
+    <string name="ok">OK</string>
 
 </resources>

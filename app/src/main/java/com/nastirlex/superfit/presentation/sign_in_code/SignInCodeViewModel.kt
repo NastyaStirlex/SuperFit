@@ -12,6 +12,9 @@ import com.nastirlex.superfit.net.repositoryImpl.AuthRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
+import java.net.SocketException
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -59,13 +62,34 @@ class SignInCodeViewModel @Inject constructor(
                 ).refreshToken
 
                 val accessToken =
-                    authRepositoryImpl.getAccessTokenWithRefreshToken(RefreshTokenBodyDto(refreshToken)).accessToken
+                    authRepositoryImpl.getAccessTokenWithRefreshToken(
+                        RefreshTokenBodyDto(
+                            refreshToken
+                        )
+                    ).accessToken
 
                 saveUserInfoUseCase.execute(accessToken, username, code.toString())
                 _signInCodeState.postValue(SignInCodeState.SuccessfulSignIn)
 
             } catch (e: Exception) {
-                _signInCodeState.postValue(SignInCodeState.UnsuccessfulSignIn)
+                when (e) {
+                    is HttpException -> when (e.code()) {
+                        404 -> {
+                            _signInCodeState.postValue(SignInCodeState.UnsuccessfulSignIn)
+                        }
+                        else -> {
+                            _signInCodeState.postValue(SignInCodeState.HttpError)
+                        }
+                    }
+
+                    is UnknownHostException, is SocketException -> {
+                        _signInCodeState.postValue(SignInCodeState.NetworkError)
+                    }
+
+                    else -> {
+                        _signInCodeState.postValue(SignInCodeState.UnknownError)
+                    }
+                }
             }
         }
 }
