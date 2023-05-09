@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SignInPasswordFragment : Fragment() {
     private lateinit var binding: FragmentSignInPasswordBinding
-    //private val args: SignInPasswordFragmentArgs by navArgs()
+    private val args: SignInPasswordFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,14 +37,14 @@ class SignInPasswordFragment : Fragment() {
     }
 
     private fun setupUsername() {
-        //binding.usernameTextView.text = args.username
+        binding.usernameTextView.text = args.username
     }
 
     private fun setupOnBackButtonClick() {
         binding.backImageButton.setOnClickListener {
             //Navigation.findNavController(requireActivity(), R.id.activity_main_nav_host).navigateUp()
 
-            findNavController().navigate(R.id.action_signInPasswordFragment_to_signInFragment)
+            findNavController().navigate(R.id.signInFragment)
         }
     }
 

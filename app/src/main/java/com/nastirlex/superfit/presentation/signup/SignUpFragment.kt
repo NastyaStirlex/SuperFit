@@ -36,7 +36,7 @@ class SignUpFragment : Fragment() {
             when (it) {
                 is SignUpState.SuccessfulSignUp -> {
                     Toast.makeText(requireContext(), "Successful sign up", Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(R.id.action_signUpFragment_to_main_nav_graph)
+                    findNavController().navigate(R.id.main_nav_graph)
                 }
 
                 is SignUpState.UnsuccessfulSignUp -> {

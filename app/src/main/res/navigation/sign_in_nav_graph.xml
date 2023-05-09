@@ -4,18 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/sign_in_nav_graph"
     app:startDestination="@id/signInFragment">
+
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.nastirlex.superfit.presentation.signin.SignInFragment"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
+
         <action
             android:id="@+id/action_signInFragment_to_signInPasswordFragment"
-            app:destination="@id/signInPasswordFragment" />
+            app:destination="@id/signInPasswordFragment" >
+
+            <argument
+                android:name="username"
+                app:argType="string" />
+
+        </action>
+        <action
+            android:id="@+id/action_signInFragment_to_sign_up_nav_graph"
+            app:destination="@id/sign_up_nav_graph" />
+
     </fragment>
+
     <fragment
         android:id="@+id/signInPasswordFragment"
         android:name="com.nastirlex.superfit.presentation.sign_in_password.SignInPasswordFragment"
         android:label="fragment_sign_in_password"
-        tools:layout="@layout/fragment_sign_in_password" />
+        tools:layout="@layout/fragment_sign_in_password" >
+
+        <argument
+            android:name="username"
+            app:argType="string" />
+
+    </fragment>
+    <include app:graph="@navigation/sign_up_nav_graph" />
+
 </navigation>
