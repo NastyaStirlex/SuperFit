@@ -2,6 +2,7 @@ package com.nastirlex.superfit.di
 
 import com.nastirlex.superfit.net.AuthorizationInterceptor
 import com.nastirlex.superfit.net.service.AuthService
+import com.nastirlex.superfit.net.service.TrainingService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,6 +11,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 import javax.inject.Singleton
 
 @Module
@@ -40,4 +42,8 @@ object NetworkModule {
     fun provideAuthService(retrofit: Retrofit): AuthService =
         retrofit.create(AuthService::class.java)
 
+    @Singleton
+    @Provides
+    fun provideTrainingService(retrofit: Retrofit): TrainingService =
+        retrofit.create(TrainingService::class.java)
 }

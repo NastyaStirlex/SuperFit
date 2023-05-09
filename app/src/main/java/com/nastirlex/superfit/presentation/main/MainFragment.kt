@@ -40,6 +40,12 @@ class MainFragment : Fragment() {
                 MainState.SuccessfulSignOut -> {
                     //findNavController().navigate(R.id.sign_in_nav_graph)
                 }
+
+                MainState.LastExercisesEmpty -> {
+                    binding.lastExercisesGroup.visibility = View.GONE
+                }
+
+                else -> {}
             }
         }
     }
