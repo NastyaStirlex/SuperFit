@@ -12,11 +12,6 @@ import com.nastirlex.superfit.R
 import com.nastirlex.superfit.databinding.FragmentExercisesBinding
 import com.nastirlex.superfit.presentation.exercises.adapter.ExercisesListAdapter
 
-private val IS_EDITING_KEY = ""
-val RANDOM_GOOD_DEED_KEY = ""
-var isEditing: Boolean = false
-var randomGoodDeed = ""
-
 class ExercisesFragment : Fragment() {
     private lateinit var binding: FragmentExercisesBinding
 
