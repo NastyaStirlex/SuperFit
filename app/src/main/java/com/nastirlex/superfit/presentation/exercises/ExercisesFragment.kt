@@ -5,11 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nastirlex.superfit.R
 import com.nastirlex.superfit.databinding.FragmentExercisesBinding
 import com.nastirlex.superfit.presentation.exercises.adapter.ExercisesListAdapter
+
+private val IS_EDITING_KEY = ""
+val RANDOM_GOOD_DEED_KEY = ""
+var isEditing: Boolean = false
+var randomGoodDeed = ""
 
 class ExercisesFragment : Fragment() {
     private lateinit var binding: FragmentExercisesBinding

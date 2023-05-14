@@ -88,6 +88,6 @@ class EncryptedSharedPref @Inject constructor(@ApplicationContext context: Conte
     }
 
     fun getFirstRun(): Boolean {
-        return sharedPreferences.getBoolean("firstRun", false)
+        return sharedPreferences.getBoolean("firstRun", true)
     }
 }

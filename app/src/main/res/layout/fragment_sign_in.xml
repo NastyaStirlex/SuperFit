@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.signin.SignInFragment"
-    android:background="@drawable/background">
-
+    android:background="@drawable/background"
+    tools:context=".presentation.signin.SignInFragment">
 
     <TextView
         android:id="@+id/appnameTextView"
@@ -46,40 +45,45 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/signInUsernameEditText"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="77dp"
-        android:backgroundTint="@color/white"
-        android:ems="10"
-        android:fontFamily="@font/montserrat"
-        android:hint="@string/username"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/signInSignUpButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appnameTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/appnameTextView">
 
-    <Button
-        android:id="@+id/signInSignInButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableEnd="@drawable/ic_arrow_right"
-        android:fontFamily="@font/montserrat_bold"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:letterSpacing="0"
-        android:paddingHorizontal="4dp"
-        android:paddingLeft="0dp"
-        android:paddingTop="0dp"
-        android:paddingRight="0dp"
-        android:paddingBottom="0dp"
-        android:text="@string/sign_in"
-        android:textSize="24sp"
-        app:backgroundTint="@color/transparent"
-        app:iconPadding="8dp"
-        app:layout_constraintStart_toStartOf="@+id/signInUsernameEditText"
-        app:layout_constraintTop_toBottomOf="@+id/signInUsernameEditText" />
+        <EditText
+            android:id="@+id/signInUsernameEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:hint="@string/username"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+
+        <Button
+            android:id="@+id/signInSignInButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_arrow_right"
+            android:fontFamily="@font/montserrat_bold"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:letterSpacing="0"
+            android:paddingHorizontal="4dp"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
+            android:text="@string/sign_in"
+            android:textSize="24sp"
+            app:backgroundTint="@color/transparent"
+            app:iconPadding="8dp" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
