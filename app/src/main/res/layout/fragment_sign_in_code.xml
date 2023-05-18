@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.sign_in_code.SignInCodeFragment"
-    android:background="@drawable/background">
+    android:background="@drawable/background"
+    tools:context=".presentation.sign_in_code.SignInCodeFragment">
 
 
     <ImageButton
@@ -47,7 +47,7 @@
         app:layout_constraintVertical_bias="0.35000002" />
 
 
-    <TableLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -55,9 +55,226 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usernameTextView">
 
-        <TableRow
+        <Button
+            android:id="@+id/firstButton2"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:background="@drawable/password_button_background"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center_horizontal|center_vertical"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:lineHeight="78.02dp"
+            android:minWidth="78dp"
+            android:minHeight="78dp"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
+            android:text="1"
+            android:textAlignment="center"
+            android:textSize="64sp"
+            app:backgroundTint="@null"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/secondButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/password_button_background"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center_horizontal|center_vertical"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minWidth="78dp"
+            android:minHeight="78dp"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
+            android:text="2"
+            android:textAlignment="center"
+            android:textSize="64sp"
+            app:backgroundTint="@null"
+            app:layout_constraintStart_toEndOf="@+id/firstButton2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/thirdButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/password_button_background"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center_horizontal|center_vertical"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minWidth="78dp"
+            android:minHeight="78dp"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
+            android:text="3"
+            android:textAlignment="center"
+            android:textSize="64sp"
+            app:backgroundTint="@null"
+            app:layout_constraintStart_toEndOf="@+id/secondButton2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/fourthButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/password_button_background"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center_horizontal|center_vertical"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minWidth="78dp"
+            android:minHeight="78dp"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
+            android:text="4"
+            android:textAlignment="center"
+            android:textSize="64sp"
+            app:backgroundTint="@null"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/firstButton2" />
+
+        <Button
+            android:id="@+id/fifthButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/password_button_background"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center_horizontal|center_vertical"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minWidth="78dp"
+            android:minHeight="78dp"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
+            android:text="5"
+            android:textAlignment="center"
+            android:textSize="64sp"
+            app:backgroundTint="@null"
+            app:layout_constraintStart_toEndOf="@+id/fourthButton2"
+            app:layout_constraintTop_toBottomOf="@+id/secondButton2" />
+
+        <Button
+            android:id="@+id/sixthButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/password_button_background"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center_horizontal|center_vertical"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minWidth="78dp"
+            android:minHeight="78dp"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
+            android:text="6"
+            android:textAlignment="center"
+            android:textSize="64sp"
+            app:backgroundTint="@null"
+            app:layout_constraintStart_toEndOf="@+id/fifthButton2"
+            app:layout_constraintTop_toBottomOf="@+id/thirdButton2" />
+
+        <Button
+            android:id="@+id/seventhButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/password_button_background"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center_horizontal|center_vertical"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minWidth="78dp"
+            android:minHeight="78dp"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
+            android:text="7"
+            android:textAlignment="center"
+            android:textSize="64sp"
+            app:backgroundTint="@null"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fourthButton2" />
+
+        <Button
+            android:id="@+id/ninthButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/password_button_background"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center_horizontal|center_vertical"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minWidth="78dp"
+            android:minHeight="78dp"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
+            android:text="9"
+            android:textAlignment="center"
+            android:textSize="64sp"
+            app:backgroundTint="@null"
+            app:layout_constraintStart_toEndOf="@+id/eighthButton2"
+            app:layout_constraintTop_toBottomOf="@+id/sixthButton2" />
+
+        <Button
+            android:id="@+id/eighthButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/password_button_background"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center_horizontal|center_vertical"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minWidth="78dp"
+            android:minHeight="78dp"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
+            android:text="8"
+            android:textAlignment="center"
+            android:textSize="64sp"
+            app:backgroundTint="@null"
+            app:layout_constraintStart_toEndOf="@+id/seventhButton2"
+            app:layout_constraintTop_toBottomOf="@+id/fifthButton2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:weightSum="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usernameTextView">
+
+        <LinearLayout
+            android:id="@+id/linLay1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="3">
 
             <Button
                 android:id="@+id/firstButton"
@@ -83,7 +300,6 @@
                 android:id="@+id/secondButton"
                 android:layout_width="88dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
                 android:background="@drawable/password_button_background"
                 android:fontFamily="@font/montserrat"
                 android:gravity="center_horizontal|center_vertical"
@@ -104,7 +320,6 @@
                 android:id="@+id/thirdButton"
                 android:layout_width="88dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
                 android:background="@drawable/password_button_background"
                 android:fontFamily="@font/montserrat"
                 android:gravity="center_horizontal|center_vertical"
@@ -120,18 +335,18 @@
                 android:textAlignment="center"
                 android:textSize="64sp"
                 app:backgroundTint="@null" />
+        </LinearLayout>
 
-        </TableRow>
-
-        <TableRow
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
 
             <Button
                 android:id="@+id/fourthButton"
                 android:layout_width="88dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:background="@drawable/password_button_background"
                 android:fontFamily="@font/montserrat"
                 android:gravity="center_horizontal|center_vertical"
@@ -152,8 +367,6 @@
                 android:id="@+id/fifthButton"
                 android:layout_width="88dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="21dp"
                 android:background="@drawable/password_button_background"
                 android:fontFamily="@font/montserrat"
                 android:gravity="center_horizontal|center_vertical"
@@ -174,8 +387,6 @@
                 android:id="@+id/sixthButton"
                 android:layout_width="88dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="21dp"
                 android:background="@drawable/password_button_background"
                 android:fontFamily="@font/montserrat"
                 android:gravity="center_horizontal|center_vertical"
@@ -191,18 +402,18 @@
                 android:textAlignment="center"
                 android:textSize="64sp"
                 app:backgroundTint="@null" />
+        </LinearLayout>
 
-        </TableRow>
-
-        <TableRow
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
 
             <Button
                 android:id="@+id/seventhButton"
                 android:layout_width="88dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="21dp"
                 android:background="@drawable/password_button_background"
                 android:fontFamily="@font/montserrat"
                 android:gravity="center_horizontal|center_vertical"
@@ -223,8 +434,6 @@
                 android:id="@+id/eighthButton"
                 android:layout_width="88dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="21dp"
                 android:background="@drawable/password_button_background"
                 android:fontFamily="@font/montserrat"
                 android:gravity="center_horizontal|center_vertical"
@@ -245,8 +454,6 @@
                 android:id="@+id/ninthButton"
                 android:layout_width="88dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="21dp"
                 android:background="@drawable/password_button_background"
                 android:fontFamily="@font/montserrat"
                 android:gravity="center_horizontal|center_vertical"
@@ -262,9 +469,8 @@
                 android:textAlignment="center"
                 android:textSize="64sp"
                 app:backgroundTint="@null" />
+        </LinearLayout>
 
-        </TableRow>
-
-    </TableLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
