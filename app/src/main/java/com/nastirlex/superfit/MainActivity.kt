@@ -16,6 +16,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.nastirlex.superfit.databinding.ActivityMainBinding
 import com.nastirlex.superfit.net.EncryptedSharedPref
+import com.nastirlex.superfit.net.repositoryImpl.TrainingRepositoryImpl
+import com.nastirlex.superfit.net.service.TrainingService
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -43,14 +45,19 @@ class MainActivity : AppCompatActivity() {
         val navGraph = navController.navInflater.inflate(R.navigation.app_nav_graph)
 
         val sharedPrefs = EncryptedSharedPref(applicationContext)
+        val accessToken = sharedPrefs.getAccessToken()
         val isFirstRun = sharedPrefs.getFirstRun()
+        val isTokenExpired = sharedPrefs.getIsTokenExpired()
+
         Log.d("first run", isFirstRun.toString())
-        Log.d("access token", sharedPrefs.getAccessToken())
+        Log.d("access token", accessToken)
+        Log.d("is token expired",isTokenExpired.toString())
+
         if (isFirstRun) {
             sharedPrefs.saveFirstRun(false)
             navGraph.setStartDestination(R.id.sign_up_nav_graph)
             navController.graph = navGraph
-        } else if (sharedPrefs.getAccessToken() != "empty") {
+        } else if (sharedPrefs.getAccessToken() != "empty" && sharedPrefs.getIsTokenExpired()) {
             navGraph.setStartDestination(R.id.main_nav_graph)
             navController.graph = navGraph
         } else {

@@ -90,4 +90,16 @@ class EncryptedSharedPref @Inject constructor(@ApplicationContext context: Conte
     fun getFirstRun(): Boolean {
         return sharedPreferences.getBoolean("firstRun", true)
     }
+
+    // ACCESS TOKEN IS EXPIRED
+    fun getIsTokenExpired(): Boolean {
+        return sharedPreferences.getBoolean("isTokenExpired", true)
+    }
+
+    fun saveIsTokenExpired(isTokenExpired: Boolean) {
+        with(editor) {
+            putBoolean("isTokenExpired", isTokenExpired)
+        }
+    }
+
 }
