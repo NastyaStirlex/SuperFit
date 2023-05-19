@@ -6,7 +6,7 @@
     <string name="email">Email</string>
     <string name="code">Code</string>
     <string name="repeat_code">RepeatCode</string>
-    
+
     <!-- Sign Up Fragment -->
     <string name="duplicate_user">Пользователь уже существует.</string>
 
@@ -47,5 +47,8 @@
     <!-- Dialog Fragment -->
     <string name="ok">OK</string>
     <string name="preference_file_key">shared</string>
+
+    <string name="finish">Finish</string>
+    <string name="need_to_do">NEED TO DO</string>
 
 </resources>

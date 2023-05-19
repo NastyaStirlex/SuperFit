@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nastirlex.superfit.R
 import com.nastirlex.superfit.databinding.ItemExercisesListBinding
 
-class ExercisesListAdapter :
+class ExercisesListAdapter(
+    private val onExerciseClick: () -> Unit
+) :
     RecyclerView.Adapter<ExercisesListAdapter.ExercisesListViewHolder>() {
 
     val exercises = arrayOf(
@@ -42,10 +44,13 @@ class ExercisesListAdapter :
     class ExercisesListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val viewBinding = ItemExercisesListBinding.bind(view)
 
-        fun bind(exercise: Exercise) {
+        fun bind(exercise: Exercise, onClickListener: () -> Unit) {
             viewBinding.exerciseImageView.setImageResource(exercise.image)
             viewBinding.exerciseTitleTextView.setText(exercise.title)
             viewBinding.exerciseDescriptionTextView.setText(exercise.description)
+            viewBinding.exerciseCardView.setOnClickListener {
+                onClickListener.invoke()
+            }
         }
     }
 
@@ -61,6 +66,6 @@ class ExercisesListAdapter :
     }
 
     override fun onBindViewHolder(holder: ExercisesListViewHolder, position: Int) {
-        holder.bind(exercises[position])
+        holder.bind(exercises[position]) { onExerciseClick.invoke() }
     }
 }
