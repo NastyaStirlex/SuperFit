@@ -1,6 +1,7 @@
 package com.nastirlex.superfit.presentation.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nastirlex.superfit.R
 import com.nastirlex.superfit.databinding.FragmentMainBinding
+import com.nastirlex.superfit.net.dto.TrainingDto
 import com.nastirlex.superfit.presentation.main.adapter.LastExercisesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -37,15 +39,17 @@ class MainFragment : Fragment() {
     private fun setupMainStateObserver() {
         mainViewModel.mainStateLiveMutable.observe(viewLifecycleOwner) {
             when (it) {
-                MainState.SuccessfulSignOut -> {
+                is MainState.SuccessfulSignOut -> {
                     findNavController().navigate(R.id.sign_in_nav_graph)
                 }
 
-                MainState.LastExercisesEmpty -> {
-                    binding.lastExercisesGroup.visibility = View.INVISIBLE
+                is MainState.LastExercisesEmpty -> {
+                    setupNoExercisesImage()
                 }
 
-                else -> {}
+                is MainState.LastExercisesLoaded -> {
+                    setupLastExercisesRecyclerView(it.lastExercises)
+                }
             }
         }
     }
@@ -62,11 +66,17 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun setupLastExercisesRecyclerView() {
+    private fun setupLastExercisesRecyclerView(lastExercises: List<TrainingDto>) {
         binding.lastExercisesRecyclerView.layoutManager =
             LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
+        binding.lastExercisesRecyclerView.adapter = LastExercisesAdapter(lastExercises)
+        binding.lastExercisesRecyclerView.visibility = View.VISIBLE
+        binding.noLastExercisesImageView.visibility = View.GONE
+    }
 
-        //binding.lastExercisesRecyclerView.adapter = LastExercisesAdapter()
+    private fun setupNoExercisesImage() {
+        binding.lastExercisesRecyclerView.visibility = View.GONE
+        binding.noLastExercisesImageView.visibility = View.VISIBLE
     }
 
 }

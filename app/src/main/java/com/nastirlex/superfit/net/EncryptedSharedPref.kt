@@ -93,7 +93,7 @@ class EncryptedSharedPref @Inject constructor(@ApplicationContext context: Conte
 
     // ACCESS TOKEN IS EXPIRED
     fun getIsTokenExpired(): Boolean {
-        return sharedPreferences.getBoolean("isTokenExpired", true)
+        return sharedPreferences.getBoolean("isTokenExpired", false)
     }
 
     fun saveIsTokenExpired(isTokenExpired: Boolean) {

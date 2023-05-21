@@ -24,17 +24,14 @@ class AuthorizationInterceptor @Inject constructor(
             )
         }
 
-        val response = chain.proceed(builder.build())
+//        val response = chain.proceed(builder.build())
+//
+//        if (response.code == 401) {
+//            encryptedSharedPref.saveIsTokenExpired(true)
+//        } else if (response.code == 200) {
+//            encryptedSharedPref.saveIsTokenExpired(false)
+//        }
 
-        when (response.code) {
-            401 -> {
-                encryptedSharedPref.saveIsTokenExpired(true)
-            }
-            200 -> {
-                encryptedSharedPref.saveIsTokenExpired(false)
-            }
-        }
-
-        return response
+        return chain.proceed(builder.build())
     }
 }

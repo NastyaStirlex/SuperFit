@@ -41,7 +41,7 @@ class MainViewModel @Inject constructor(
 
     private fun getLastExercises() = viewModelScope.launch(Dispatchers.IO) {
         val lastExercises = trainingRepositoryImpl.getTrainings()
-        if (lastExercises.isEmpty() || lastExercises.size == 1) {
+        if (lastExercises.isEmpty() || lastExercises.size < 2) {
             _mainStateLiveMutable.postValue(MainState.LastExercisesEmpty)
         } else {
             _mainStateLiveMutable.postValue(MainState.LastExercisesLoaded(lastExercises))

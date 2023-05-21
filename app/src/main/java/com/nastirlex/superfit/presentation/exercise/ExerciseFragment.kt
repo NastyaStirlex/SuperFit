@@ -1,29 +1,29 @@
 package com.nastirlex.superfit.presentation.exercise
 
 import android.animation.ObjectAnimator
-import android.content.Context
 import android.content.Context.SENSOR_SERVICE
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
-import android.telephony.TelephonyCallback.ServiceStateListener
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.DecelerateInterpolator
-import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import com.nastirlex.superfit.databinding.FragmentExerciseBinding
-import kotlinx.coroutines.delay
+import kotlin.math.abs
 
 
 class ExerciseFragment : Fragment() {
     lateinit var binding: FragmentExerciseBinding
     lateinit var sensorManager: SensorManager
+
+    private val NOISE = 2.0.toFloat()
+
+    private var mLastX = 0f
+    private var mLastY = 0f
+    private var mLastZ = 0f
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,10 +42,38 @@ class ExerciseFragment : Fragment() {
         val sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
         val sensorListener = object : SensorEventListener {
             override fun onSensorChanged(event: SensorEvent?) {
-                val valuesUpDown = event?.values?.get(1)
-                if (valuesUpDown != null) {
-                    binding.textView4.text = "up/down ${valuesUpDown.toInt()}"
+                val x = event?.values?.get(0)
+                val y = event?.values?.get(1)
+                val z = event?.values?.get(2)
+
+                var deltaX: Float = abs(mLastX - x!!)
+                var deltaY: Float = abs(mLastY - y!!)
+                var deltaZ: Float = abs(mLastZ - z!!)
+
+                if (deltaX < NOISE) deltaX = 0.0.toFloat()
+                if (deltaY < NOISE) deltaY = 0.0.toFloat()
+                if (deltaZ < NOISE) deltaZ = 0.0.toFloat()
+
+                mLastX = x
+                mLastY = y
+                mLastZ = z
+
+                binding.xTextView.text = deltaX.toString()
+                binding.yTextView.text = deltaY.toString()
+                binding.zTextView.text = deltaZ.toString()
+
+                if (deltaX > deltaY) {
+                    binding.textView.text = "horizontal"
+                } else if (deltaY > deltaX) {
+                    binding.textView.text = "vertical"
+                } else {
+                    binding.textView.text = "nothing"
                 }
+
+//                val valuesUpDown = event?.values?.get(0)
+//                if (valuesUpDown != null) {
+//                    binding.textView4.text = "up/down ${valuesUpDown.toInt()}"
+//                }
             }
 
             override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
