@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             sharedPrefs.saveFirstRun(false)
             navGraph.setStartDestination(R.id.sign_up_nav_graph)
             navController.graph = navGraph
-        } else if (sharedPrefs.getAccessToken() != "empty" && sharedPrefs.getIsTokenExpired()) {
+        } else if (sharedPrefs.getAccessToken() != "empty" && !sharedPrefs.getIsTokenExpired()) {
             navGraph.setStartDestination(R.id.main_nav_graph)
             navController.graph = navGraph
         } else {

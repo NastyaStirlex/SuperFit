@@ -5,61 +5,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".presentation.exercise.ExerciseFragment">
+    tools:context=".presentation.squats.SquatsFragment">
 
-    <Button
-        android:id="@+id/finishButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="34dp"
-        android:background="@drawable/button_finish_background"
-        android:clickable="true"
-        android:enabled="true"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="@string/finish"
-        android:textSize="24sp"
-        app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <ImageButton
+        android:id="@+id/backImageButton"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/ic_arrow_back"
+        app:backgroundTint="@color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="@string/crunch_title"
+        android:text="@string/squats_title"
         android:textColor="@color/white"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/backImageButton" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_marginTop="64dp"
         android:indeterminate="false"
+        android:max="40"
+        android:progress="40"
+        android:textAlignment="center"
         app:indicatorColor="@color/purple"
         app:indicatorSize="216dp"
-        app:layout_constraintBottom_toTopOf="@+id/finishButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:trackThickness="4dp"
-        android:progress="100"/>
+        app:trackThickness="4dp" />
 
     <TextView
-        android:id="@+id/crunchTimesTextView"
+        android:id="@+id/squatsTimesTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="25"
+        android:text="40"
         android:textColor="@color/white"
         android:textSize="64sp"
         app:layout_constraintBottom_toBottomOf="@+id/progressBar"
@@ -73,22 +68,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="-16dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="@string/need_to_do"
+        android:text="@string/times_left"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/progressBar"
         app:layout_constraintStart_toStartOf="@+id/progressBar"
         app:layout_constraintTop_toBottomOf="@+id/squatsTimesTextView" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
