@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.nastirlex.superfit.R
 import com.nastirlex.superfit.databinding.FragmentSignInBinding
+import com.nastirlex.superfit.presentation.utils.MessageDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,6 +26,7 @@ class SignInFragment : Fragment() {
         binding = FragmentSignInBinding.inflate(inflater, container, false)
 
         setupSignInStateObserver()
+
         setupOnSignInPasswordButtonClick()
         setupOnSignUpButtonClick()
 
@@ -35,11 +37,10 @@ class SignInFragment : Fragment() {
         signInViewModel.signInStateLive.observe(viewLifecycleOwner) {
             when (it) {
                 is SignInState.EmptyUsername -> {
-                    Toast.makeText(
-                        requireContext(),
-                        R.string.validation_empty_username,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    MessageDialogFragment(R.string.validation_empty_username).show(
+                        childFragmentManager,
+                        MessageDialogFragment.TAG
+                    )
                 }
 
                 is SignInState.Success -> {
@@ -48,8 +49,16 @@ class SignInFragment : Fragment() {
                     )
                     findNavController().navigate(action)
                 }
+
+                is SignInState.UsernameFromStorage -> {
+                    setupUsername(it.username)
+                }
             }
         }
+    }
+
+    private fun setupUsername(username: String) {
+        binding.signInUsernameEditText.setText(username)
     }
 
     private fun setupOnSignInPasswordButtonClick() {

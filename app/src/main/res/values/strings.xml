@@ -6,7 +6,7 @@
     <string name="email">Email</string>
     <string name="code">Code</string>
     <string name="repeat_code">RepeatCode</string>
-    
+
     <!-- Sign Up Fragment -->
     <string name="duplicate_user">Пользователь уже существует.</string>
 
@@ -47,5 +47,16 @@
     <!-- Dialog Fragment -->
     <string name="ok">OK</string>
     <string name="preference_file_key">shared</string>
+
+    <string name="finish">Finish</string>
+    <string name="need_to_do">NEED TO DO</string>
+
+    <string name="times_left">TIMES LEFT</string>
+    <string name="seconds_left">SECONDS LEFT</string>
+    <string name="meters_passed">METERS PASSED</string>
+    <string name="go_home">Go home</string>
+    <string name="un_success"> times are missing. You can do it better!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.nastirlex.superfit.domain.GetTokenUseCase
 import com.nastirlex.superfit.domain.SaveUserInfoUseCase
 import com.nastirlex.superfit.net.dto.AuthorizationBodyDto
 import com.nastirlex.superfit.net.dto.RefreshTokenBodyDto
@@ -19,7 +20,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SignInCodeViewModel @Inject constructor(
     private val authRepositoryImpl: AuthRepositoryImpl,
-    private val saveUserInfoUseCase: SaveUserInfoUseCase
+    private val saveUserInfoUseCase: SaveUserInfoUseCase,
+     private val getTokenUseCase: GetTokenUseCase
 ) : ViewModel() {
 
     private val _signInCodeState = MutableLiveData<SignInCodeState>()
@@ -67,7 +69,9 @@ class SignInCodeViewModel @Inject constructor(
                         )
                     ).accessToken
 
+
                 saveUserInfoUseCase.execute(accessToken, username, code.toString())
+                Log.d("access token: ", getTokenUseCase.execute())
                 _signInCodeState.postValue(SignInCodeState.SuccessfulSignIn)
 
             } catch (e: Exception) {

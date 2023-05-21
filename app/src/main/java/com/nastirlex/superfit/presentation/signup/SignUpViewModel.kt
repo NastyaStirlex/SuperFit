@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.nastirlex.superfit.domain.SaveUserInfoUseCase
 import com.nastirlex.superfit.net.dto.AuthorizationBodyDto
+import com.nastirlex.superfit.net.dto.RefreshTokenBodyDto
 import com.nastirlex.superfit.net.repositoryImpl.AuthRepositoryImpl
 import com.nastirlex.superfit.presentation.sign_in_code.SignInCodeState
 import com.nastirlex.superfit.presentation.utils.Constants
@@ -18,14 +20,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
-    private val authRepositoryImpl: AuthRepositoryImpl
+    private val authRepositoryImpl: AuthRepositoryImpl,
+    private val saveUserInfoUseCase: SaveUserInfoUseCase
 ) : ViewModel() {
 
     private val _signUpState = MutableLiveData<SignUpState>()
     val signUpState: LiveData<SignUpState>
         get() = _signUpState
-
-    init {}
 
     fun send(event: SignUpEvent) {
         when (event) {
@@ -60,6 +61,23 @@ class SignUpViewModel @Inject constructor(
                             email = email, code = code.toInt()
                         )
                     )
+
+                    val refreshToken = authRepositoryImpl.getRefreshToken(
+                        AuthorizationBodyDto(
+                            email = username,
+                            code = code.toInt()
+                        )
+                    ).refreshToken
+
+                    val accessToken =
+                        authRepositoryImpl.getAccessTokenWithRefreshToken(
+                            RefreshTokenBodyDto(
+                                refreshToken
+                            )
+                        ).accessToken
+
+                    saveUserInfoUseCase.execute(accessToken, username, code)
+
                     _signUpState.postValue(SignUpState.SuccessfulSignUp)
                 } catch (e: Exception) {
                     when (e) {

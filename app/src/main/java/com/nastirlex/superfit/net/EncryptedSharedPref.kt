@@ -5,11 +5,8 @@ import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import javax.inject.Inject
-val ENCRYPTED_SHARED_PREFERENCES = ""
+
 class EncryptedSharedPref @Inject constructor(@ApplicationContext context: Context) {
     private val masterKeyAlias = MasterKey.Builder(context)
         .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
@@ -17,7 +14,7 @@ class EncryptedSharedPref @Inject constructor(@ApplicationContext context: Conte
 
     private val sharedPreferences = EncryptedSharedPreferences.create(
         context,
-        ENCRYPTED_SHARED_PREFERENCES,
+        "preferences",
         masterKeyAlias,
         EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
         EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
@@ -92,6 +89,17 @@ class EncryptedSharedPref @Inject constructor(@ApplicationContext context: Conte
 
     fun getFirstRun(): Boolean {
         return sharedPreferences.getBoolean("firstRun", true)
+    }
+
+    // ACCESS TOKEN IS EXPIRED
+    fun getIsTokenExpired(): Boolean {
+        return sharedPreferences.getBoolean("isTokenExpired", false)
+    }
+
+    fun saveIsTokenExpired(isTokenExpired: Boolean) {
+        with(editor) {
+            putBoolean("isTokenExpired", isTokenExpired)
+        }
     }
 
 }

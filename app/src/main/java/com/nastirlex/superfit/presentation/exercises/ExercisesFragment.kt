@@ -40,6 +40,8 @@ class ExercisesFragment : Fragment() {
         binding.exercisesRecyclerView.layoutManager =
             LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
 
-        binding.exercisesRecyclerView.adapter = ExercisesListAdapter()
+        binding.exercisesRecyclerView.adapter = ExercisesListAdapter() {
+            findNavController().navigate(R.id.action_exercisesFragment_to_exerciseFragment)
+        }
     }
 }
