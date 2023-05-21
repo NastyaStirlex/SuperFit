@@ -54,5 +54,6 @@
     <string name="times_left">TIMES LEFT</string>
     <string name="seconds_left">SECONDS LEFT</string>
     <string name="meters_passed">METERS PASSED</string>
+    <string name="go_home">Go home</string>
 
 </resources>
