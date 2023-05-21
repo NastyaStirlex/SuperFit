@@ -52,5 +52,6 @@
     <string name="need_to_do">NEED TO DO</string>
 
     <string name="times_left">TIMES LEFT</string>
+    <string name="seconds_left">SECONDS LEFT</string>
 
 </resources>
