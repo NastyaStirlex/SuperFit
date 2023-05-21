@@ -55,5 +55,6 @@
     <string name="seconds_left">SECONDS LEFT</string>
     <string name="meters_passed">METERS PASSED</string>
     <string name="go_home">Go home</string>
+    <string name="un_success"> times are missing. You can do it better!</string>
 
 </resources>
