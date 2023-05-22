@@ -150,6 +150,7 @@
                     android:letterSpacing="0"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
+                    android:paddingHorizontal="4dp"
                     android:paddingLeft="0dp"
                     android:paddingTop="0dp"
                     android:paddingRight="0dp"
