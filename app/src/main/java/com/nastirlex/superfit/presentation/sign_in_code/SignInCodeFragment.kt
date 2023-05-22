@@ -1,5 +1,7 @@
 package com.nastirlex.superfit.presentation.sign_in_code
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -33,19 +35,17 @@ class SignInCodeFragment : Fragment() {
     ): View {
         binding = FragmentSignInCodeBinding.inflate(inflater, container, false)
 
-//        var buttonsCoordinates = mutableListOf(
-//            Pair(binding.firstButton.x, binding.firstButton.y),
-//            Pair(binding.secondButton.x, binding.secondButton.y),
-//            Pair(binding.thirdButton.x, binding.thirdButton.y),
-//            Pair(binding.fourthButton.x, binding.fourthButton.y),
-//            Pair(binding.fifthButton.x, binding.fifthButton.y),
-//            Pair(binding.sixthButton.x, binding.sixthButton.y),
-//            Pair(binding.seventhButton.x, binding.seventhButton.y),
-//            Pair(binding.eighthButton.x, binding.eighthButton.y),
-//            Pair(binding.ninthButton.x, binding.ninthButton.y)
-//        )
-
-        //Log.d("buttonsCoordinates", buttonsCoordinates[6].toString())
+        var buttonsCoordinates = mutableListOf(
+            Pair(binding.firstButton.x, binding.firstButton.y),
+            Pair(binding.secondButton.x, binding.secondButton.y),
+            Pair(binding.thirdButton.x, binding.thirdButton.y),
+            Pair(binding.fourthButton.x, binding.fourthButton.y),
+            Pair(binding.fifthButton.x, binding.fifthButton.y),
+            Pair(binding.sixthButton.x, binding.sixthButton.y),
+            Pair(binding.seventhButton.x, binding.seventhButton.y),
+            Pair(binding.eighthButton.x, binding.eighthButton.y),
+            Pair(binding.ninthButton.x, binding.ninthButton.y)
+        )
 
         setupUsername()
 
@@ -67,105 +67,86 @@ class SignInCodeFragment : Fragment() {
     }
 
     private fun shuffleButtons() {
-        val firstPairCoordinates = IntArray(2)
-        binding.firstButton2.getLocationOnScreen(firstPairCoordinates)
-
-        val secondPairCoordinates = IntArray(2)
-        binding.secondButton2.getLocationOnScreen(secondPairCoordinates)
-
-        val thirdPairCoordinates = IntArray(2)
-        binding.thirdButton2.getLocationOnScreen(thirdPairCoordinates)
-
-        val fourthPairCoordinates = IntArray(2)
-        binding.fourthButton2.getLocationOnScreen(fourthPairCoordinates)
-
-        val fifthPairCoordinates = IntArray(2)
-        binding.fifthButton2.getLocationOnScreen(fifthPairCoordinates)
-
-        val sixthPairCoordinates = IntArray(2)
-        binding.sixthButton2.getLocationOnScreen(sixthPairCoordinates)
-
-        val seventhPairCoordinates = IntArray(2)
-        binding.seventhButton2.getLocationOnScreen(seventhPairCoordinates)
-
-        val eighthPairCoordinates = IntArray(2)
-        binding.eighthButton2.getLocationOnScreen(eighthPairCoordinates)
-
-        val ninthPairCoordinates = IntArray(2)
-        binding.ninthButton2.getLocationOnScreen(ninthPairCoordinates)
 
         val buttonsCoordinates = mutableListOf(
-            Pair(firstPairCoordinates[0], firstPairCoordinates[1]),
-            Pair(secondPairCoordinates[0], secondPairCoordinates[1]),
-            Pair(thirdPairCoordinates[0], thirdPairCoordinates[1]),
-            Pair(fourthPairCoordinates[0], fourthPairCoordinates[1]),
-            Pair(fifthPairCoordinates[0], fifthPairCoordinates[1]),
-            Pair(sixthPairCoordinates[0], sixthPairCoordinates[1]),
-            Pair(seventhPairCoordinates[0], seventhPairCoordinates[1]),
-            Pair(eighthPairCoordinates[0], eighthPairCoordinates[1]),
-            Pair(ninthPairCoordinates[0], ninthPairCoordinates[1])
+            Pair(binding.firstButton.x, binding.firstButton.y),
+            Pair(binding.secondButton.x, binding.secondButton.y),
+            Pair(binding.thirdButton.x, binding.thirdButton.y),
+            Pair(binding.fourthButton.x, binding.fourthButton.y),
+            Pair(binding.fifthButton.x, binding.fifthButton.y),
+            Pair(binding.sixthButton.x, binding.sixthButton.y),
+            Pair(binding.seventhButton.x, binding.seventhButton.y),
+            Pair(binding.eighthButton.x, binding.eighthButton.y),
+            Pair(binding.ninthButton.x, binding.ninthButton.y)
         )
-        for (i in 0 until buttonsCoordinates.size) {
-            Log.d("coord", buttonsCoordinates[i].toString())
-        }
+
         for (i in 0..8) {
             lateinit var view: Button
             when (i) {
                 0 -> {
-                    view = binding.firstButton2
+                    view = binding.firstButton
                 }
 
                 1 -> {
-                    view = binding.secondButton2
+                    view = binding.secondButton
                 }
 
                 2 -> {
-                    view = binding.thirdButton2
+                    view = binding.thirdButton
                 }
 
                 3 -> {
-                    view = binding.fourthButton2
+                    view = binding.fourthButton
                 }
 
                 4 -> {
-                    view = binding.fifthButton2
+                    view = binding.fifthButton
                 }
 
                 5 -> {
-                    view = binding.sixthButton2
+                    view = binding.sixthButton
                 }
 
                 6 -> {
-                    view = binding.seventhButton2
+                    view = binding.seventhButton
                 }
 
                 7 -> {
-                    view = binding.eighthButton2
+                    view = binding.eighthButton
                 }
 
                 8 -> {
-                    view = binding.ninthButton2
+                    view = binding.ninthButton
                 }
             }
+
+            val xStart = view.x
+            val yStart = view.y
+
             val randomPosition = Random.nextInt(0, buttonsCoordinates.size)
-            val positionX = buttonsCoordinates[randomPosition].first
-            val positionY = buttonsCoordinates[randomPosition].second
+
+            val xEnd = buttonsCoordinates[randomPosition].first
+            val yEnd = buttonsCoordinates[randomPosition].second
+
+            val deltaX = xEnd - view.left
+            val deltaY = yEnd - view.top
+            Log.d("delta x y", "$deltaX $deltaY")
+
             buttonsCoordinates.removeAt(randomPosition)
 
+            val animX: ObjectAnimator =
+                ObjectAnimator.ofFloat(view, "translationX", deltaX)
+            val animY: ObjectAnimator =
+                ObjectAnimator.ofFloat(view, "translationY", deltaY)
 
-//            val animX: ObjectAnimator =
-//                ObjectAnimator.ofInt(view, "translationX", positionX)
-//            val animY: ObjectAnimator =
-//                ObjectAnimator.ofInt(view, "translationY", positionY)
-//
-//
-//            val animSet = AnimatorSet()
-//            animSet.playTogether(
-//                animX,
-//                animY
-//            )
-//            animSet.duration = 2000
-//            animSet.start()
+
+            val animSet = AnimatorSet()
+            animSet.playTogether(
+                animX,
+                animY
+            )
+            animSet.duration = 1000
+            animSet.start()
         }
     }
 
@@ -220,7 +201,7 @@ class SignInCodeFragment : Fragment() {
     }
 
     private fun setupOnFirstButtonClick() {
-        binding.firstButton2.setOnClickListener {
+        binding.firstButton.setOnClickListener {
             signInCodeViewModel.send(ChangePassword('1'))
             shuffleButtons()
         }
@@ -229,48 +210,56 @@ class SignInCodeFragment : Fragment() {
     private fun setupOnSecondButtonClick() {
         binding.secondButton.setOnClickListener {
             signInCodeViewModel.send(ChangePassword('2'))
+            shuffleButtons()
         }
     }
 
     private fun setupOnThirdButtonClick() {
         binding.thirdButton.setOnClickListener {
             signInCodeViewModel.send(ChangePassword('3'))
+            shuffleButtons()
         }
     }
 
     private fun setupOnFourthButtonClick() {
         binding.fourthButton.setOnClickListener {
             signInCodeViewModel.send(ChangePassword('4'))
+            shuffleButtons()
         }
     }
 
     private fun setupOnFifthButtonClick() {
         binding.fifthButton.setOnClickListener {
             signInCodeViewModel.send(ChangePassword('5'))
+            shuffleButtons()
         }
     }
 
     private fun setupOnSixthButtonClick() {
         binding.sixthButton.setOnClickListener {
             signInCodeViewModel.send(ChangePassword('6'))
+            shuffleButtons()
         }
     }
 
     private fun setupOnSeventhButtonClick() {
         binding.seventhButton.setOnClickListener {
             signInCodeViewModel.send(ChangePassword('7'))
+            shuffleButtons()
         }
     }
 
     private fun setupOnEighthButtonClick() {
         binding.eighthButton.setOnClickListener {
             signInCodeViewModel.send(ChangePassword('8'))
+            shuffleButtons()
         }
     }
 
     private fun setupOnNinthButtonClick() {
         binding.ninthButton.setOnClickListener {
             signInCodeViewModel.send(ChangePassword('9'))
+            shuffleButtons()
         }
     }
 
