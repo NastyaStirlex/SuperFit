@@ -18,14 +18,19 @@
         android:id="@+id/exercisesFragment"
         android:name="com.nastirlex.superfit.presentation.exercises.ExercisesFragment"
         android:label="fragment_exercises"
-        tools:layout="@layout/fragment_exercises" >
-        <action
-            android:id="@+id/action_exercisesFragment_to_exerciseFragment"
-            app:destination="@id/exerciseFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_exercises" />
+    <include app:graph="@navigation/crunch_nav_graph" />
+    <include app:graph="@navigation/squats_nav_graph" />
+    <include app:graph="@navigation/plank_nav_graph" />
+    <include app:graph="@navigation/push_ups_nav_graph" />
+    <include app:graph="@navigation/running_nav_graph" />
     <fragment
-        android:id="@+id/exerciseFragment"
-        android:name="com.nastirlex.superfit.presentation.exercise.ExerciseFragment"
-        android:label="fragment_exercise"
-        tools:layout="@layout/fragment_exercise" />
+        android:id="@+id/successFragment"
+        android:name="com.nastirlex.superfit.presentation.success.SuccessFragment"
+        android:label="fragment_success"
+        tools:layout="@layout/fragment_success" >
+        <argument
+            android:name="exercise"
+            app:argType="string" />
+    </fragment>
 </navigation>

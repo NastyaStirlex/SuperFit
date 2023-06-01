@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/squats_nav_graph"
+    app:startDestination="@id/squatsFragment">
+
+    <fragment
+        android:id="@+id/squatsFragment"
+        android:name="com.nastirlex.superfit.presentation.squats.SquatsFragment"
+        android:label="fragment_squats"
+        tools:layout="@layout/fragment_squats" />
+</navigation>

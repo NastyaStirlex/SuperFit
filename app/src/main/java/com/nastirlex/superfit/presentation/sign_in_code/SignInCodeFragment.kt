@@ -120,9 +120,6 @@ class SignInCodeFragment : Fragment() {
                 }
             }
 
-            val xStart = view.x
-            val yStart = view.y
-
             val randomPosition = Random.nextInt(0, buttonsCoordinates.size)
 
             val xEnd = buttonsCoordinates[randomPosition].first
@@ -130,7 +127,6 @@ class SignInCodeFragment : Fragment() {
 
             val deltaX = xEnd - view.left
             val deltaY = yEnd - view.top
-            Log.d("delta x y", "$deltaX $deltaY")
 
             buttonsCoordinates.removeAt(randomPosition)
 
@@ -145,7 +141,7 @@ class SignInCodeFragment : Fragment() {
                 animX,
                 animY
             )
-            animSet.duration = 1000
+            animSet.duration = 500
             animSet.start()
         }
     }

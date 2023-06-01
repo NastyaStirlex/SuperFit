@@ -8,7 +8,6 @@ import com.nastirlex.superfit.domain.SaveUserInfoUseCase
 import com.nastirlex.superfit.net.dto.AuthorizationBodyDto
 import com.nastirlex.superfit.net.dto.RefreshTokenBodyDto
 import com.nastirlex.superfit.net.repositoryImpl.AuthRepositoryImpl
-import com.nastirlex.superfit.presentation.sign_in_code.SignInCodeState
 import com.nastirlex.superfit.presentation.utils.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -42,7 +41,7 @@ class SignUpViewModel @Inject constructor(
             if (username.isBlank() || email.isBlank() || code.isBlank() || repeatCode.isBlank()) {
                 _signUpState.postValue(SignUpState.EmptyFields)
 
-            } else if (!email.matches(Constants.email_regexp)) {
+            } else if (!email.matches(Constants.EMAIL_REGEXP)) {
                 _signUpState.postValue(SignUpState.InvalidEmail)
 
             } else if (code.contains('0')) {
@@ -64,7 +63,7 @@ class SignUpViewModel @Inject constructor(
 
                     val refreshToken = authRepositoryImpl.getRefreshToken(
                         AuthorizationBodyDto(
-                            email = username,
+                            email = email,
                             code = code.toInt()
                         )
                     ).refreshToken

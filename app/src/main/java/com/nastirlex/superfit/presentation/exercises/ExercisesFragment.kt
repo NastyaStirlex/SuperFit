@@ -41,7 +41,7 @@ class ExercisesFragment : Fragment() {
             LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
 
         binding.exercisesRecyclerView.adapter = ExercisesListAdapter() {
-            findNavController().navigate(R.id.action_exercisesFragment_to_exerciseFragment)
+            findNavController().navigate(R.id.crunch_nav_graph)
         }
     }
 }

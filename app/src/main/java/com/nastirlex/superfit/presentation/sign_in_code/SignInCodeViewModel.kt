@@ -72,7 +72,6 @@ class SignInCodeViewModel @Inject constructor(
 
 
                 saveUserInfoUseCase.execute(accessToken, username, code.toString())
-                Log.d("access token: ", getTokenUseCase.execute())
                 _signInCodeState.postValue(SignInCodeState.SuccessfulSignIn)
 
             } catch (e: Exception) {

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/crunch_nav_graph"
+    app:startDestination="@id/crunchFragment">
+
+    <fragment
+        android:id="@+id/crunchFragment"
+        android:name="com.nastirlex.superfit.presentation.crunch.CrunchFragment"
+        android:label="fragment_crunch"
+        tools:layout="@layout/fragment_crunch" >
+
+        <action
+            android:id="@+id/action_crunchFragment_to_success_nav_graph"
+            app:destination="@id/success_nav_graph">
+
+            <argument
+                android:name="exerciseName"
+                app:argType="integer" />
+
+        </action>
+
+    </fragment>
+
+    <include app:graph="@navigation/success_nav_graph" />
+
+</navigation>
