@@ -6,7 +6,7 @@ import javax.inject.Inject
 class IncreaseCrunchCountUseCase @Inject constructor(
     private val encryptedSharedPreferences: EncryptedSharedPref
 ) {
-    fun execute() {
-        encryptedSharedPreferences.increaseCrunch()
+    fun execute(crunchCount: Int) {
+        encryptedSharedPreferences.saveCrunch(crunchCount)
     }
 }

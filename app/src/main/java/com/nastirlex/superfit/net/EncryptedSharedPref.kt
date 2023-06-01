@@ -15,6 +15,7 @@ import com.nastirlex.superfit.presentation.utils.Constants.PASSWORD_KEY
 import com.nastirlex.superfit.presentation.utils.Constants.PLANK_DEFAULT_VALUE
 import com.nastirlex.superfit.presentation.utils.Constants.PLANK_KEY
 import com.nastirlex.superfit.presentation.utils.Constants.PUSH_UPS_KEY
+import com.nastirlex.superfit.presentation.utils.Constants.REFRESH_TOKEN_KEY
 import com.nastirlex.superfit.presentation.utils.Constants.RUNNING_DEFAULT_VALUE
 import com.nastirlex.superfit.presentation.utils.Constants.RUNNING_INCREASE_VALUE
 import com.nastirlex.superfit.presentation.utils.Constants.RUNNING_KEY
@@ -56,6 +57,25 @@ class EncryptedSharedPref @Inject constructor(@ApplicationContext context: Conte
     fun deleteAccessToken() {
         with(editor) {
             remove(ACCESS_TOKEN_KEY)
+            apply()
+        }
+    }
+
+    // REFRESH TOKEN
+    fun saveRefreshToken(refreshToken: String) {
+        with(editor) {
+            putString(REFRESH_TOKEN_KEY, refreshToken)
+            apply()
+        }
+    }
+
+    fun getRefreshToken(): String {
+        return sharedPreferences.getString(REFRESH_TOKEN_KEY, CREDENTIALS_DEFAULT_VALUE).toString()
+    }
+
+    fun deleteRefreshToken() {
+        with(editor) {
+            remove(REFRESH_TOKEN_KEY)
             apply()
         }
     }
@@ -118,6 +138,7 @@ class EncryptedSharedPref @Inject constructor(@ApplicationContext context: Conte
     fun saveIsTokenExpired(isTokenExpired: Boolean) {
         with(editor) {
             putBoolean("isTokenExpired", isTokenExpired)
+            apply()
         }
     }
 
@@ -127,9 +148,10 @@ class EncryptedSharedPref @Inject constructor(@ApplicationContext context: Conte
         return sharedPreferences.getInt(CRUNCH_KEY, EXERCISES_DEFAULT_VALUE)
     }
 
-    fun increaseCrunch() {
+    fun saveCrunch(crunchCount: Int) {
         with(editor) {
-            putInt(CRUNCH_KEY, getCrunch() + EXERCISES_INCREASE_VALUE)
+            putInt(CRUNCH_KEY, crunchCount)
+            apply()
         }
     }
 
@@ -141,6 +163,7 @@ class EncryptedSharedPref @Inject constructor(@ApplicationContext context: Conte
     fun increaseSquats() {
         with(editor) {
             putInt(SQUATS_KEY, getSquats() + EXERCISES_INCREASE_VALUE)
+            apply()
         }
     }
 
@@ -152,6 +175,7 @@ class EncryptedSharedPref @Inject constructor(@ApplicationContext context: Conte
     fun increasePLank() {
         with(editor) {
             putInt(PLANK_KEY, getPlank() + EXERCISES_INCREASE_VALUE)
+            apply()
         }
     }
 
@@ -163,6 +187,7 @@ class EncryptedSharedPref @Inject constructor(@ApplicationContext context: Conte
     fun increasePushUps() {
         with(editor) {
             putInt(PUSH_UPS_KEY, getPushUps() + EXERCISES_INCREASE_VALUE)
+            apply()
         }
     }
 
@@ -174,6 +199,7 @@ class EncryptedSharedPref @Inject constructor(@ApplicationContext context: Conte
     fun increaseRunning() {
         with(editor) {
             putInt(RUNNING_KEY, getRunning() + RUNNING_INCREASE_VALUE)
+            apply()
         }
     }
 

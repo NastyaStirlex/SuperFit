@@ -43,6 +43,10 @@ class LaunchFragment : Fragment() {
                 is LaunchState.NavigateToSignUp -> {
                     findNavController().navigate(R.id.sign_up_nav_graph)
                 }
+
+                is LaunchState.NavigateToMain -> {
+                    findNavController().navigate(R.id.main_nav_graph)
+                }
             }
         }
     }

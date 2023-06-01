@@ -3,6 +3,7 @@ package com.nastirlex.superfit.presentation.utils
 object Constants {
     // Encrypted Shared Preferences
     const val ACCESS_TOKEN_KEY = "accessToken"
+    const val REFRESH_TOKEN_KEY = "refreshToken"
     const val USERNAME_KEY = "username"
     const val PASSWORD_KEY = "password"
     const val FIRST_RUN_KEY = "firstRun"

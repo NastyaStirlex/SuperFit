@@ -1,5 +1,7 @@
 package com.nastirlex.superfit.net.service
 
+import com.nastirlex.superfit.net.dto.AccessTokenResponse
+import com.nastirlex.superfit.net.dto.RefreshTokenBodyDto
 import com.nastirlex.superfit.net.dto.TrainingDto
 import retrofit2.Response
 import retrofit2.http.Body

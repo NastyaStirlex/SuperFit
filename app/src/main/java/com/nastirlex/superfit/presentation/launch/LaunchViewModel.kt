@@ -1,20 +1,11 @@
 package com.nastirlex.superfit.presentation.launch
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nastirlex.superfit.R
-import com.nastirlex.superfit.domain.GetCodeUseCase
-import com.nastirlex.superfit.domain.GetTokenUseCase
-import com.nastirlex.superfit.domain.GetUsernameUseCase
-import com.nastirlex.superfit.domain.SaveUserInfoUseCase
 import com.nastirlex.superfit.net.EncryptedSharedPref
-import com.nastirlex.superfit.net.dto.AuthorizationBodyDto
-import com.nastirlex.superfit.net.dto.RefreshTokenBodyDto
-import com.nastirlex.superfit.net.repositoryImpl.AuthRepositoryImpl
-import com.nastirlex.superfit.presentation.main.MainState
+import com.nastirlex.superfit.presentation.utils.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -27,6 +18,8 @@ class LaunchViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val isFirstRun = encryptedSharedPref.getFirstRun()
+    private val isThereAccessToken =
+        encryptedSharedPref.getAccessToken() != Constants.CREDENTIALS_DEFAULT_VALUE
 
     init {
         setupNavigation()
@@ -41,6 +34,8 @@ class LaunchViewModel @Inject constructor(
         if (isFirstRun) {
             encryptedSharedPref.saveFirstRun(false)
             _launchStateLiveMutable.postValue(LaunchState.NavigateToSignUp)
+        } else if (isThereAccessToken) {
+            _launchStateLiveMutable.postValue(LaunchState.NavigateToMain)
         } else {
             _launchStateLiveMutable.postValue(LaunchState.NavigateToSignIn)
         }

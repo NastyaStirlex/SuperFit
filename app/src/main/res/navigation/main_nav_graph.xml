@@ -24,13 +24,4 @@
     <include app:graph="@navigation/plank_nav_graph" />
     <include app:graph="@navigation/push_ups_nav_graph" />
     <include app:graph="@navigation/running_nav_graph" />
-    <fragment
-        android:id="@+id/successFragment"
-        android:name="com.nastirlex.superfit.presentation.success.SuccessFragment"
-        android:label="fragment_success"
-        tools:layout="@layout/fragment_success" >
-        <argument
-            android:name="exercise"
-            app:argType="string" />
-    </fragment>
 </navigation>

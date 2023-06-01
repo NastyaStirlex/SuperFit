@@ -75,7 +75,7 @@ class SignUpViewModel @Inject constructor(
                             )
                         ).accessToken
 
-                    saveUserInfoUseCase.execute(accessToken, username, code)
+                    saveUserInfoUseCase.execute(accessToken, refreshToken, username, code)
 
                     _signUpState.postValue(SignUpState.SuccessfulSignUp)
                 } catch (e: Exception) {

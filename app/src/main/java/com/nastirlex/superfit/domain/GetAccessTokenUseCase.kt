@@ -3,7 +3,7 @@ package com.nastirlex.superfit.domain
 import com.nastirlex.superfit.net.EncryptedSharedPref
 import javax.inject.Inject
 
-class GetTokenUseCase @Inject constructor(
+class GetAccessTokenUseCase @Inject constructor(
     private val encryptedSharedPreferences: EncryptedSharedPref
 ) {
     fun execute(): String {

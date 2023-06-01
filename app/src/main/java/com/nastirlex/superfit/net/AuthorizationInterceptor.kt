@@ -1,15 +1,13 @@
 package com.nastirlex.superfit.net
 
-import android.util.Log
-import com.nastirlex.superfit.domain.GetTokenUseCase
+import com.nastirlex.superfit.domain.GetAccessTokenUseCase
 import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
 
 
 class AuthorizationInterceptor @Inject constructor(
-    private val getTokenUsecase: GetTokenUseCase,
-    private val encryptedSharedPref: EncryptedSharedPref
+    private val getAccessTokenUseCase: GetAccessTokenUseCase
 ) :
     Interceptor {
 
@@ -20,17 +18,26 @@ class AuthorizationInterceptor @Inject constructor(
         if (request.header("Authorization") == null) {
             builder.addHeader(
                 "Authorization",
-                "Bearer ${getTokenUsecase.execute()}"
+                "Bearer ${getAccessTokenUseCase.execute()}"
             )
         }
 
 //        val response = chain.proceed(builder.build())
 //
+//
 //        if (response.code == 401) {
-//            encryptedSharedPref.saveIsTokenExpired(true)
-//        } else if (response.code == 200) {
-//            encryptedSharedPref.saveIsTokenExpired(false)
+//            val refreshToken = encryptedSharedPref.getRefreshToken()
+//            val accessToken = runBlocking {
+//                getNewAccessTokenUseCase.execute(refreshToken)
+//            }
+//
+//            encryptedSharedPref.saveAccessToken(accessToken)
+//
+//
+//            // encryptedSharedPref.saveIsTokenExpired(true)
 //        }
+//
+//        response.close()
 
         return chain.proceed(builder.build())
     }

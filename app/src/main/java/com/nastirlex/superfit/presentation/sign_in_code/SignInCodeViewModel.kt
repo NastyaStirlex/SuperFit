@@ -1,11 +1,10 @@
 package com.nastirlex.superfit.presentation.sign_in_code
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nastirlex.superfit.domain.GetTokenUseCase
+import com.nastirlex.superfit.domain.GetAccessTokenUseCase
 import com.nastirlex.superfit.domain.SaveUserInfoUseCase
 import com.nastirlex.superfit.net.dto.AuthorizationBodyDto
 import com.nastirlex.superfit.net.dto.RefreshTokenBodyDto
@@ -22,7 +21,7 @@ import javax.inject.Inject
 class SignInCodeViewModel @Inject constructor(
     private val authRepositoryImpl: AuthRepositoryImpl,
     private val saveUserInfoUseCase: SaveUserInfoUseCase,
-     private val getTokenUseCase: GetTokenUseCase
+     private val getAccessTokenUseCase: GetAccessTokenUseCase
 ) : ViewModel() {
 
     private val _signInCodeState = MutableLiveData<SignInCodeState>()
@@ -71,7 +70,7 @@ class SignInCodeViewModel @Inject constructor(
                     ).accessToken
 
 
-                saveUserInfoUseCase.execute(accessToken, username, code.toString())
+                saveUserInfoUseCase.execute(accessToken, refreshToken, username, code.toString())
                 _signInCodeState.postValue(SignInCodeState.SuccessfulSignIn)
 
             } catch (e: Exception) {

@@ -36,6 +36,7 @@ class CrunchViewModel @Inject constructor(
 
     private fun getCrunchCount() {
         val crunchCount = getCrunchUseCase.execute()
+
         _crunchStateLiveMutable.value =
             CrunchState.CrunchCountFromStorage(crunchCount.toString())
     }
@@ -55,21 +56,23 @@ class CrunchViewModel @Inject constructor(
     private fun saveTraining() =
         viewModelScope.launch(Dispatchers.IO) {
             val pattern = "yyyy-MM-dd"
-            val date = System.currentTimeMillis() //here the date comes in 13 digits
+            val date = System.currentTimeMillis()
             val dtlong = Date(date)
             val sdfdate = SimpleDateFormat(pattern, Locale.getDefault()).format(dtlong)
-            Log.d("count", getCrunchUseCase.execute().toString())
+            val crunchCount = getCrunchUseCase.execute()
 
             try {
                 trainingRepositoryImpl.saveTraining(
                     TrainingDto(
                         sdfdate,
                         ExerciseType.CRUNCH.toString(),
-                        getCrunchUseCase.execute()
+                        crunchCount
                     )
                 )
 
-                increaseCrunchCountUseCase.execute()
+                val newCrunchCount = crunchCount + Constants.EXERCISES_INCREASE_VALUE
+
+                increaseCrunchCountUseCase.execute(newCrunchCount)
 
                 _crunchStateLiveMutable.postValue(CrunchState.SuccessfulSavingTraining)
             } catch (e: Exception) {
