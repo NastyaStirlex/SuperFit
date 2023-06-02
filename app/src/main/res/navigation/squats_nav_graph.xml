@@ -9,5 +9,18 @@
         android:id="@+id/squatsFragment"
         android:name="com.nastirlex.superfit.presentation.squats.SquatsFragment"
         android:label="fragment_squats"
-        tools:layout="@layout/fragment_squats" />
+        tools:layout="@layout/fragment_squats" >
+
+        <action
+            android:id="@+id/action_squatsFragment_to_success_nav_graph"
+            app:destination="@id/success_nav_graph">
+
+            <argument
+                android:name="exerciseName"
+                app:argType="integer" />
+
+        </action>
+
+    </fragment>
+    <include app:graph="@navigation/success_nav_graph" />
 </navigation>

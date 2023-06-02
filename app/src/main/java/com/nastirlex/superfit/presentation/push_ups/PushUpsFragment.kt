@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.nastirlex.superfit.R
 import com.nastirlex.superfit.databinding.FragmentPushUpsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PushUpsFragment : Fragment() {
     lateinit var binding: FragmentPushUpsBinding
 

@@ -48,6 +48,11 @@
     <string name="ok">OK</string>
     <string name="preference_file_key">shared</string>
 
+    <string name="exercise_dialog_title">Start the training?</string>
+    <string name="exercise_dialog_positive_button">GO!</string>
+    <string name="exercise_dialog_negative_button">LATER</string>
+    <string name="exercise_dialog_message">You need to repeat the exercise %1$d times. Are you ready?</string>
+
     <string name="finish">Finish</string>
     <string name="need_to_do">NEED TO DO</string>
 

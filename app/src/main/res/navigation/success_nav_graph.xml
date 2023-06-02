@@ -10,8 +10,10 @@
         android:name="com.nastirlex.superfit.presentation.success.SuccessFragment"
         android:label="fragment_success"
         tools:layout="@layout/fragment_success" >
+
         <argument
             android:name="exerciseName"
             app:argType="integer" />
+
     </fragment>
 </navigation>

@@ -8,7 +8,6 @@ import com.nastirlex.superfit.presentation.utils.Constants.ACCESS_TOKEN_KEY
 import com.nastirlex.superfit.presentation.utils.Constants.CREDENTIALS_DEFAULT_VALUE
 import com.nastirlex.superfit.presentation.utils.Constants.CRUNCH_KEY
 import com.nastirlex.superfit.presentation.utils.Constants.EXERCISES_DEFAULT_VALUE
-import com.nastirlex.superfit.presentation.utils.Constants.EXERCISES_INCREASE_VALUE
 import com.nastirlex.superfit.presentation.utils.Constants.FIRST_RUN_DEFAULT_VALUE
 import com.nastirlex.superfit.presentation.utils.Constants.FIRST_RUN_KEY
 import com.nastirlex.superfit.presentation.utils.Constants.PASSWORD_KEY
@@ -17,7 +16,6 @@ import com.nastirlex.superfit.presentation.utils.Constants.PLANK_KEY
 import com.nastirlex.superfit.presentation.utils.Constants.PUSH_UPS_KEY
 import com.nastirlex.superfit.presentation.utils.Constants.REFRESH_TOKEN_KEY
 import com.nastirlex.superfit.presentation.utils.Constants.RUNNING_DEFAULT_VALUE
-import com.nastirlex.superfit.presentation.utils.Constants.RUNNING_INCREASE_VALUE
 import com.nastirlex.superfit.presentation.utils.Constants.RUNNING_KEY
 import com.nastirlex.superfit.presentation.utils.Constants.SQUATS_KEY
 import com.nastirlex.superfit.presentation.utils.Constants.USERNAME_KEY
@@ -130,19 +128,6 @@ class EncryptedSharedPref @Inject constructor(@ApplicationContext context: Conte
         return sharedPreferences.getBoolean(FIRST_RUN_KEY, FIRST_RUN_DEFAULT_VALUE)
     }
 
-    // ACCESS TOKEN IS EXPIRED
-    fun getIsTokenExpired(): Boolean {
-        return sharedPreferences.getBoolean("isTokenExpired", false)
-    }
-
-    fun saveIsTokenExpired(isTokenExpired: Boolean) {
-        with(editor) {
-            putBoolean("isTokenExpired", isTokenExpired)
-            apply()
-        }
-    }
-
-
     // CRUNCH
     fun getCrunch(): Int {
         return sharedPreferences.getInt(CRUNCH_KEY, EXERCISES_DEFAULT_VALUE)
@@ -160,9 +145,9 @@ class EncryptedSharedPref @Inject constructor(@ApplicationContext context: Conte
         return sharedPreferences.getInt(SQUATS_KEY, EXERCISES_DEFAULT_VALUE)
     }
 
-    fun increaseSquats() {
+    fun saveSquats(squatsCount: Int) {
         with(editor) {
-            putInt(SQUATS_KEY, getSquats() + EXERCISES_INCREASE_VALUE)
+            putInt(SQUATS_KEY, squatsCount)
             apply()
         }
     }
@@ -172,9 +157,9 @@ class EncryptedSharedPref @Inject constructor(@ApplicationContext context: Conte
         return sharedPreferences.getInt(PLANK_KEY, PLANK_DEFAULT_VALUE)
     }
 
-    fun increasePLank() {
+    fun savePlank(plankTime: Int) {
         with(editor) {
-            putInt(PLANK_KEY, getPlank() + EXERCISES_INCREASE_VALUE)
+            putInt(PLANK_KEY, plankTime)
             apply()
         }
     }
@@ -184,9 +169,9 @@ class EncryptedSharedPref @Inject constructor(@ApplicationContext context: Conte
         return sharedPreferences.getInt(PUSH_UPS_KEY, EXERCISES_DEFAULT_VALUE)
     }
 
-    fun increasePushUps() {
+    fun savePushUps(pushUpsCount: Int) {
         with(editor) {
-            putInt(PUSH_UPS_KEY, getPushUps() + EXERCISES_INCREASE_VALUE)
+            putInt(PUSH_UPS_KEY, pushUpsCount)
             apply()
         }
     }
@@ -196,9 +181,9 @@ class EncryptedSharedPref @Inject constructor(@ApplicationContext context: Conte
         return sharedPreferences.getInt(RUNNING_KEY, RUNNING_DEFAULT_VALUE)
     }
 
-    fun increaseRunning() {
+    fun saveRunning(runningDistance: Int) {
         with(editor) {
-            putInt(RUNNING_KEY, getRunning() + RUNNING_INCREASE_VALUE)
+            putInt(RUNNING_KEY, runningDistance)
             apply()
         }
     }

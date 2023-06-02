@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.nastirlex.superfit.R
 import com.nastirlex.superfit.databinding.FragmentRunningBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RunningFragment : Fragment() {
     lateinit var binding: FragmentRunningBinding
 

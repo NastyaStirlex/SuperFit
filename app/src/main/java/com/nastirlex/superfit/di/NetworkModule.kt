@@ -21,7 +21,7 @@ object NetworkModule {
     @SimpleOkHttpClient
     @Singleton
     @Provides
-    fun provideSimpleHttpClient(): OkHttpClient  {
+    fun provideSimpleHttpClient(): OkHttpClient {
         return OkHttpClient.Builder().apply {
             val logLevel = HttpLoggingInterceptor.Level.BODY
             addInterceptor(HttpLoggingInterceptor().setLevel(logLevel))
@@ -31,11 +31,15 @@ object NetworkModule {
     @CommonOkHttpClient
     @Singleton
     @Provides
-    fun provideHttpClient(authorizationInterceptor: AuthorizationInterceptor): OkHttpClient {
+    fun provideHttpClient(
+        authorizationInterceptor: AuthorizationInterceptor,
+        refreshAuthenticator: RefreshAuthenticator
+    ): OkHttpClient {
         return OkHttpClient.Builder().apply {
             val logLevel = HttpLoggingInterceptor.Level.BODY
             addInterceptor(HttpLoggingInterceptor().setLevel(logLevel))
             addInterceptor(authorizationInterceptor)
+            authenticator(refreshAuthenticator)
         }.build()
     }
 

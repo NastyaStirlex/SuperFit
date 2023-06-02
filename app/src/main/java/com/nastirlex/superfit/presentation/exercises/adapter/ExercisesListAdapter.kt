@@ -9,11 +9,15 @@ import com.nastirlex.superfit.R
 import com.nastirlex.superfit.databinding.ItemExercisesListBinding
 
 class ExercisesListAdapter(
-    private val onExerciseClick: () -> Unit
+    private val onCrunchClick: () -> Unit,
+    private val onPushUpsClick: () -> Unit,
+    private val onPlankClick: () -> Unit,
+    private val onSquatsClick: () -> Unit,
+    private val onRunningClick: () -> Unit
 ) :
     RecyclerView.Adapter<ExercisesListAdapter.ExercisesListViewHolder>() {
 
-    val exercises = arrayOf(
+    private val exercises = arrayOf(
         Exercise(
             R.drawable.push_up,
             R.string.push_ups_title,
@@ -66,6 +70,14 @@ class ExercisesListAdapter(
     }
 
     override fun onBindViewHolder(holder: ExercisesListViewHolder, position: Int) {
-        holder.bind(exercises[position]) { onExerciseClick.invoke() }
+        holder.bind(exercises[position]) {
+            when (position) {
+                0 -> onPushUpsClick.invoke()
+                1 -> onPlankClick.invoke()
+                2 -> onSquatsClick.invoke()
+                3 -> onCrunchClick.invoke()
+                4 -> onRunningClick.invoke()
+            }
+        }
     }
 }

@@ -9,5 +9,16 @@
         android:id="@+id/plankFragment"
         android:name="com.nastirlex.superfit.presentation.plank.PlankFragment"
         android:label="fragment_plank"
-        tools:layout="@layout/fragment_plank" />
+        tools:layout="@layout/fragment_plank" >
+        <action
+            android:id="@+id/action_plankFragment_to_success_nav_graph"
+            app:destination="@id/success_nav_graph">
+
+            <argument
+                android:name="exerciseName"
+                app:argType="integer" />
+
+        </action>
+    </fragment>
+    <include app:graph="@navigation/success_nav_graph" />
 </navigation>

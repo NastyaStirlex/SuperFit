@@ -1,14 +1,14 @@
-package com.nastirlex.superfit.presentation.squats
+package com.nastirlex.superfit.presentation.plank
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nastirlex.superfit.domain.GetSquatsCountUseCase
-import com.nastirlex.superfit.domain.IncreaseSquatsCountUseCase
+import com.nastirlex.superfit.domain.GetPlankTimeUseCase
+import com.nastirlex.superfit.domain.IncreasePlankTimeUseCase
 import com.nastirlex.superfit.net.dto.TrainingDto
 import com.nastirlex.superfit.net.repositoryImpl.TrainingRepositoryImpl
-import com.nastirlex.superfit.presentation.crunch.CrunchState
+import com.nastirlex.superfit.presentation.squats.SquatsState
 import com.nastirlex.superfit.presentation.utils.Constants
 import com.nastirlex.superfit.presentation.utils.ExerciseType
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,29 +23,29 @@ import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
-class SquatsViewModel @Inject constructor(
+class PlankViewModel @Inject constructor(
     private val trainingRepositoryImpl: TrainingRepositoryImpl,
-    private val getSquatsCountUseCase: GetSquatsCountUseCase,
-    private val increaseSquatsCountUseCase: IncreaseSquatsCountUseCase
-) : ViewModel() {
+    private val getPlankTimeUseCase: GetPlankTimeUseCase,
+    private val increasePlankTimeUseCase: IncreasePlankTimeUseCase
+): ViewModel() {
 
-    private val _squatsStateLiveMutable = MutableLiveData<SquatsState>()
-    val squatsStateLiveMutable: LiveData<SquatsState>
-        get() = _squatsStateLiveMutable
+    private val _plankStateLiveMutable = MutableLiveData<PlankState>()
+    val plankStateLiveMutable: LiveData<PlankState>
+        get() = _plankStateLiveMutable
 
-    private fun getSquatsCount() {
-        val crunchCount = getSquatsCountUseCase.execute()
+    private fun getPlankTime() {
+        val plankTime = getPlankTimeUseCase.execute()
 
-        _squatsStateLiveMutable.value =
-            SquatsState.SquatsCountFromStorage(crunchCount.toString())
+        _plankStateLiveMutable.value =
+            PlankState.PlankTimeFromStorage(plankTime.toString())
     }
 
     init {
-        getSquatsCount()
+        getPlankTime()
     }
 
-    fun send(squatsEvent: SquatsEvent) {
-        when (squatsEvent) {
+    fun send(plankEvent: PlankEvent) {
+        when (plankEvent) {
             is SaveTraining -> {
                 saveTraining()
             }
@@ -58,34 +58,34 @@ class SquatsViewModel @Inject constructor(
             val date = System.currentTimeMillis()
             val dtlong = Date(date)
             val sdfdate = SimpleDateFormat(pattern, Locale.getDefault()).format(dtlong)
-            val squatsCount = getSquatsCountUseCase.execute()
+            val plankTime = getPlankTimeUseCase.execute()
 
             try {
                 trainingRepositoryImpl.saveTraining(
                     TrainingDto(
                         sdfdate,
-                        ExerciseType.SQUATS.toString(),
-                        squatsCount
+                        ExerciseType.PLANK.toString(),
+                        plankTime
                     )
                 )
 
-                val newSquatsCount = squatsCount + Constants.EXERCISES_INCREASE_VALUE
+                val newPlankTime = plankTime + Constants.EXERCISES_INCREASE_VALUE
 
-                increaseSquatsCountUseCase.execute(newSquatsCount)
+                increasePlankTimeUseCase.execute(newPlankTime)
 
-                _squatsStateLiveMutable.postValue(SquatsState.SuccessfulSavingTraining)
+                _plankStateLiveMutable.postValue(PlankState.SuccessfulSavingTraining)
             } catch (e: Exception) {
                 when (e) {
                     is HttpException -> {
-                        _squatsStateLiveMutable.postValue(SquatsState.HttpError)
+                        _plankStateLiveMutable.postValue(PlankState.HttpError)
                     }
 
                     is UnknownHostException, is SocketException -> {
-                        _squatsStateLiveMutable.postValue(SquatsState.NetworkError)
+                        _plankStateLiveMutable.postValue(PlankState.NetworkError)
                     }
 
                     else -> {
-                        _squatsStateLiveMutable.postValue(SquatsState.UnknownError)
+                        _plankStateLiveMutable.postValue(PlankState.UnknownError)
                     }
                 }
             }

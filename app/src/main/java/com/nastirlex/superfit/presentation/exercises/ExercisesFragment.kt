@@ -40,8 +40,12 @@ class ExercisesFragment : Fragment() {
         binding.exercisesRecyclerView.layoutManager =
             LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
 
-        binding.exercisesRecyclerView.adapter = ExercisesListAdapter() {
-            findNavController().navigate(R.id.crunch_nav_graph)
-        }
+        binding.exercisesRecyclerView.adapter = ExercisesListAdapter(
+            onCrunchClick = { findNavController().navigate(R.id.crunch_nav_graph) },
+            onPlankClick = { findNavController().navigate(R.id.plank_nav_graph) },
+            onPushUpsClick = { findNavController().navigate(R.id.push_ups_nav_graph) },
+            onRunningClick = { findNavController().navigate(R.id.running_nav_graph) },
+            onSquatsClick = { findNavController().navigate(R.id.squats_nav_graph) }
+        )
     }
 }

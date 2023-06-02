@@ -11,18 +11,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.nastirlex.superfit.R
 import com.nastirlex.superfit.databinding.FragmentSquatsBinding
+import com.nastirlex.superfit.presentation.TrainingType
+import com.nastirlex.superfit.presentation.utils.MessageDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.Timer
 import java.util.TimerTask
 import kotlin.concurrent.timerTask
 
+@AndroidEntryPoint
 class SquatsFragment : Fragment() {
     lateinit var binding: FragmentSquatsBinding
 
-    var builder = StringBuilder()
+    private val squatsViewModel: SquatsViewModel by viewModels()
 
-    var history = FloatArray(2)
+    var history = FloatArray(3)
     var direction = arrayOf("NONE", "NONE")
 
     lateinit var sensorManager: SensorManager
@@ -42,23 +48,10 @@ class SquatsFragment : Fragment() {
     ): View {
         binding = FragmentSquatsBinding.inflate(inflater, container, false)
 
-        sensorManager = requireContext().getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        setupSensorManager()
+        setupSensorListener()
 
-        sensorAccel = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
-
-        sensorListener = object : SensorEventListener {
-            override fun onSensorChanged(event: SensorEvent?) {
-                if (event?.sensor?.type == Sensor.TYPE_ACCELEROMETER) {
-
-
-                    for (i in 0..2) {
-                        valuesAccel[i] = event.values[i]
-                    }
-                }
-            }
-
-            override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
-        }
+        setupSquatsStateObserver()
 
         return binding.root
     }
@@ -77,7 +70,7 @@ class SquatsFragment : Fragment() {
                 showInfo()
             }
         }
-        timer.schedule(task, 0, 1000)
+        timer.schedule(task, 0, 850)
     }
 
     override fun onPause() {
@@ -86,47 +79,110 @@ class SquatsFragment : Fragment() {
         timer.cancel()
     }
 
+    private fun setupSquatsStateObserver() {
+        squatsViewModel.squatsStateLiveMutable.observe(viewLifecycleOwner) {
+            when (it) {
+                is SquatsState.SuccessfulSavingTraining -> {
+                    val action = SquatsFragmentDirections.actionSquatsFragmentToSuccessNavGraph(
+                        TrainingType.Squats.title
+                    )
+                    findNavController().navigate(action)
+                }
+
+                is SquatsState.SquatsCountFromStorage -> {
+                    setupSquatsCount(it.squatsCount)
+                    setupProgressBar(it.squatsCount)
+                }
+
+                is SquatsState.HttpError -> {
+                    MessageDialogFragment(R.string.http_error).show(
+                        childFragmentManager,
+                        MessageDialogFragment.TAG
+                    )
+                }
+
+                is SquatsState.NetworkError -> {
+                    MessageDialogFragment(R.string.network_error).show(
+                        childFragmentManager,
+                        MessageDialogFragment.TAG
+                    )
+                }
+
+                is SquatsState.UnknownError -> {
+                    MessageDialogFragment(R.string.unknown_error).show(
+                        childFragmentManager,
+                        MessageDialogFragment.TAG
+                    )
+                }
+            }
+        }
+    }
+
+    private fun setupSquatsCount(squatsCount: String) {
+        binding.squatsTimesTextView.text = squatsCount
+    }
+
+    private fun setupProgressBar(squatsCount: String) {
+        binding.progressBar.progress = squatsCount.toInt()
+        binding.progressBar.max = squatsCount.toInt()
+    }
+
+    private fun setupSensorManager() {
+        sensorManager = requireContext().getSystemService(Context.SENSOR_SERVICE) as SensorManager
+
+        sensorAccel = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+    }
+
+    private fun setupSensorListener() {
+        sensorListener = object : SensorEventListener {
+            override fun onSensorChanged(event: SensorEvent?) {
+                if (event?.sensor?.type == Sensor.TYPE_ACCELEROMETER) {
+                    for (i in 0..2) {
+                        valuesAccel[i] = event.values[i]
+                    }
+                }
+            }
+
+            override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
+        }
+    }
+
     private fun showInfo() {
         val x = valuesAccel[0]
         val y = valuesAccel[1]
+        val z = valuesAccel[2]
+
+        val xChange = history[0] - x
 
         val yChange = history[1] - y
 
+        val zChange = history[2] - z
+
         history[0] = x
         history[1] = y
+        history[2] = z
 
-        if (yChange > 2) { // движение вниз
+        if (zChange > 4) { // движение вниз
             direction[1] = "DOWN"
             if (counter == 0) {
                 counter++
-                Toast.makeText(requireContext(), "вниз с увеличением счетчика, $counter", Toast.LENGTH_SHORT)
-                    .show()
             }
 
-            Toast.makeText(requireContext(), "просто вниз, $counter", Toast.LENGTH_SHORT)
-                .show()
 
-        } else if (yChange < -2) {
+        } else if (zChange < -4) {
             direction[1] = "UP"
             if (counter == 1) {
-                counter--
+                val decreasedSquatsCount =
+                    binding.squatsTimesTextView.text.toString().toInt() - 1
+                binding.squatsTimesTextView.text = decreasedSquatsCount.toString()
+
                 binding.progressBar.progress--
-                Toast.makeText(requireContext(), "minus exercise, $counter", Toast.LENGTH_SHORT)
-                    .show()
 
-            } else {
-                Toast.makeText(requireContext(), "просто вверх, $counter", Toast.LENGTH_SHORT)
-                    .show()
+                if (binding.progressBar.progress == 0) {
+                    squatsViewModel.send(SaveTraining())
+                }
             }
-        } else {
-            direction[1] = "NOTHING"
         }
-
-        builder.setLength(0)
-        builder.append(" y: ")
-        builder.append(direction[1])
-
-        binding.textView.text = builder.toString()
 
     }
 
