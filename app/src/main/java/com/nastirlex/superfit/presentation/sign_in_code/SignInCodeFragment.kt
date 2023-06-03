@@ -35,18 +35,6 @@ class SignInCodeFragment : Fragment() {
     ): View {
         binding = FragmentSignInCodeBinding.inflate(inflater, container, false)
 
-        var buttonsCoordinates = mutableListOf(
-            Pair(binding.firstButton.x, binding.firstButton.y),
-            Pair(binding.secondButton.x, binding.secondButton.y),
-            Pair(binding.thirdButton.x, binding.thirdButton.y),
-            Pair(binding.fourthButton.x, binding.fourthButton.y),
-            Pair(binding.fifthButton.x, binding.fifthButton.y),
-            Pair(binding.sixthButton.x, binding.sixthButton.y),
-            Pair(binding.seventhButton.x, binding.seventhButton.y),
-            Pair(binding.eighthButton.x, binding.eighthButton.y),
-            Pair(binding.ninthButton.x, binding.ninthButton.y)
-        )
-
         setupUsername()
 
         setupOnBackButtonClick()

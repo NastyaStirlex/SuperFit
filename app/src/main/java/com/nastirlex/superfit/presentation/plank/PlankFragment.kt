@@ -1,5 +1,6 @@
 package com.nastirlex.superfit.presentation.plank
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -89,6 +90,21 @@ class PlankFragment : Fragment() {
 
     }
 
+    private fun setupPRogressBarAnim() {
+        var start = binding.progressBar.progress
+        val end = binding.progressBar.progress - 1
+
+        val progressBarAnim: ObjectAnimator = ObjectAnimator.ofInt(
+            binding.progressBar,
+            "progress",
+            start,
+            end
+        )
+
+        progressBarAnim.duration = 9000
+        progressBarAnim.start()
+    }
+
     private fun setupTimer() {
         timer = Timer()
         val task: TimerTask = timerTask {
@@ -97,11 +113,25 @@ class PlankFragment : Fragment() {
                     binding.plankTimeTextView.text.toString().toInt() - 1
                 binding.plankTimeTextView.text = decreasedPlankTime.toString()
 
-                binding.progressBar.progress--
+                val start = binding.progressBar.progress
+                val end = binding.progressBar.progress - 1 * 100
+
+                val progressBarAnim: ObjectAnimator = ObjectAnimator.ofInt(
+                    binding.progressBar,
+                    "progress",
+                    start,
+                    end
+                )
+
+                progressBarAnim.duration = 1000
+                progressBarAnim.start()
+
 
                 if (binding.progressBar.progress == 0) {
                     plankViewModel.send(SaveTraining())
+                    timer.cancel()
                 }
+
             }
         }
         timer.schedule(task, 0, 1000)
@@ -112,7 +142,7 @@ class PlankFragment : Fragment() {
     }
 
     private fun setupProgressBar(plankTime: String) {
-        binding.progressBar.progress = plankTime.toInt()
-        binding.progressBar.max = plankTime.toInt()
+        binding.progressBar.max = plankTime.toInt() * 100
+        binding.progressBar.progress =  binding.progressBar.max
     }
 }

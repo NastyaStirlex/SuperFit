@@ -140,6 +140,13 @@ class EncryptedSharedPref @Inject constructor(@ApplicationContext context: Conte
         }
     }
 
+    fun deleteCrunch() {
+        with(editor) {
+            remove(CRUNCH_KEY)
+            apply()
+        }
+    }
+
     // SQUATS
     fun getSquats(): Int {
         return sharedPreferences.getInt(SQUATS_KEY, EXERCISES_DEFAULT_VALUE)
@@ -148,6 +155,13 @@ class EncryptedSharedPref @Inject constructor(@ApplicationContext context: Conte
     fun saveSquats(squatsCount: Int) {
         with(editor) {
             putInt(SQUATS_KEY, squatsCount)
+            apply()
+        }
+    }
+
+    fun deleteSquats() {
+        with(editor) {
+            remove(SQUATS_KEY)
             apply()
         }
     }
@@ -164,6 +178,13 @@ class EncryptedSharedPref @Inject constructor(@ApplicationContext context: Conte
         }
     }
 
+    fun deletePlank() {
+        with(editor) {
+            remove(PLANK_KEY)
+            apply()
+        }
+    }
+
     // PUSH-UPS
     fun getPushUps(): Int {
         return sharedPreferences.getInt(PUSH_UPS_KEY, EXERCISES_DEFAULT_VALUE)
@@ -176,6 +197,13 @@ class EncryptedSharedPref @Inject constructor(@ApplicationContext context: Conte
         }
     }
 
+    fun deletePushUps() {
+        with(editor) {
+            remove(PUSH_UPS_KEY)
+            apply()
+        }
+    }
+
     // RUNNING
     fun getRunning(): Int {
         return sharedPreferences.getInt(RUNNING_KEY, RUNNING_DEFAULT_VALUE)
@@ -184,6 +212,13 @@ class EncryptedSharedPref @Inject constructor(@ApplicationContext context: Conte
     fun saveRunning(runningDistance: Int) {
         with(editor) {
             putInt(RUNNING_KEY, runningDistance)
+            apply()
+        }
+    }
+
+    fun deleteRunning() {
+        with(editor) {
+            remove(RUNNING_KEY)
             apply()
         }
     }

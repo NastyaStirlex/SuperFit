@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.nastirlex.superfit.domain.DeleteExercisesProgressUseCase
 import com.nastirlex.superfit.domain.DeleteUserInfoUseCase
 import com.nastirlex.superfit.net.repositoryImpl.TrainingRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +15,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val trainingRepositoryImpl: TrainingRepositoryImpl,
-    private val deleteUserInfoUseCase: DeleteUserInfoUseCase
+    private val deleteUserInfoUseCase: DeleteUserInfoUseCase,
+    private val deleteExercisesProgressUseCase: DeleteExercisesProgressUseCase
 ): ViewModel() {
 
     private val _mainStateLiveMutable = MutableLiveData<MainState>()
@@ -36,6 +38,7 @@ class MainViewModel @Inject constructor(
 
     private fun signOut() = viewModelScope.launch(Dispatchers.IO) {
         deleteUserInfoUseCase.execute()
+        deleteExercisesProgressUseCase.execute()
         _mainStateLiveMutable.postValue(MainState.SuccessfulSignOut)
     }
 
