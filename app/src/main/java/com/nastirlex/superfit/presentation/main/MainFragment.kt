@@ -29,6 +29,7 @@ class MainFragment : Fragment() {
         // Buttons clicks
         setupOnSeeAllButtonClick()
         setupOnSignOutButtonClick()
+        setupOnDetailsButtonClick()
 
         // Observers
         setupMainStateObserver()
@@ -48,7 +49,9 @@ class MainFragment : Fragment() {
                 }
 
                 is MainState.LastExercisesLoaded -> {
-                    setupLastExercisesRecyclerView(it.lastExercises)
+                    setupLastExercisesRecyclerView(
+                        it.lastExercises
+                    )
                 }
             }
         }
@@ -66,10 +69,19 @@ class MainFragment : Fragment() {
         }
     }
 
+    private fun setupOnDetailsButtonClick() {
+        binding.myBodyDetailsButton.setOnClickListener {
+            val action = MainFragmentDirections.actionMainFragmentToMyBodyNavGraph()
+            findNavController().navigate(action)
+        }
+    }
+
     private fun setupLastExercisesRecyclerView(lastExercises: List<TrainingDto>) {
         binding.lastExercisesRecyclerView.layoutManager =
             LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
+
         binding.lastExercisesRecyclerView.adapter = LastExercisesAdapter(lastExercises)
+
         binding.lastExercisesRecyclerView.visibility = View.VISIBLE
         binding.noLastExercisesImageView.visibility = View.GONE
     }

@@ -9,5 +9,34 @@
         android:id="@+id/runningFragment"
         android:name="com.nastirlex.superfit.presentation.running.RunningFragment"
         android:label="fragment_running"
-        tools:layout="@layout/fragment_running" />
+        tools:layout="@layout/fragment_running" >
+
+        <action
+            android:id="@+id/action_runningFragment_to_success_nav_graph"
+            app:destination="@id/success_nav_graph" >
+
+            <argument
+                android:name="exerciseName"
+                app:argType="integer" />
+
+        </action>
+
+        <action
+            android:id="@+id/action_runningFragment_to_unsuccess_nav_graph"
+            app:destination="@id/unsuccess_nav_graph" >
+
+            <argument
+                android:name="timesLeft"
+                app:argType="string" />
+
+            <argument
+                android:name="exerciseName"
+                app:argType="integer" />
+
+        </action>
+
+    </fragment>
+
+    <include app:graph="@navigation/success_nav_graph" />
+    <include app:graph="@navigation/unsuccess_nav_graph" />
 </navigation>

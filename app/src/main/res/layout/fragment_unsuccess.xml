@@ -7,7 +7,6 @@
     android:background="@color/background"
     tools:context=".presentation.unsuccess.UnSuccessFragment">
 
-
     <Button
         android:id="@+id/goHomeButton"
         android:layout_width="0dp"
@@ -20,6 +19,7 @@
         android:enabled="true"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/go_home"
+        android:textColor="@color/white"
         android:textSize="24sp"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,7 +27,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/unSuccessExerciseTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
@@ -50,11 +50,11 @@
         app:indicatorSize="216dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/unSuccessExerciseTitleTextView"
         app:trackThickness="4dp" />
 
     <TextView
-        android:id="@+id/unSuccessTextView"
+        android:id="@+id/unSuccessTimesLeftTextView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="38dp"

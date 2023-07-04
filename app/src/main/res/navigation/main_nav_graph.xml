@@ -13,15 +13,21 @@
         <action
             android:id="@+id/action_mainFragment_to_exercisesFragment"
             app:destination="@id/exercisesFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_my_body_nav_graph"
+            app:destination="@id/my_body_nav_graph" />
     </fragment>
+
     <fragment
         android:id="@+id/exercisesFragment"
         android:name="com.nastirlex.superfit.presentation.exercises.ExercisesFragment"
         android:label="fragment_exercises"
         tools:layout="@layout/fragment_exercises" />
+
     <include app:graph="@navigation/crunch_nav_graph" />
     <include app:graph="@navigation/squats_nav_graph" />
     <include app:graph="@navigation/plank_nav_graph" />
     <include app:graph="@navigation/push_ups_nav_graph" />
     <include app:graph="@navigation/running_nav_graph" />
+    <include app:graph="@navigation/my_body_nav_graph" />
 </navigation>

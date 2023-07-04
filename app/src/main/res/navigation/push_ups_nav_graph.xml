@@ -9,5 +9,35 @@
         android:id="@+id/pushUpsFragment"
         android:name="com.nastirlex.superfit.presentation.push_ups.PushUpsFragment"
         android:label="fragment_push_ups"
-        tools:layout="@layout/fragment_push_ups" />
+        tools:layout="@layout/fragment_push_ups" >
+
+        <action
+            android:id="@+id/action_pushUpsFragment_to_success_nav_graph"
+            app:destination="@id/success_nav_graph">
+
+            <argument
+                android:name="exerciseName"
+                app:argType="integer" />
+
+        </action>
+
+        <action
+            android:id="@+id/action_pushUpsFragment_to_unsuccess_nav_graph"
+            app:destination="@id/unsuccess_nav_graph" >
+
+            <argument
+                android:name="exerciseName"
+                app:argType="integer" />
+
+            <argument
+                android:name="timesLeft"
+                app:argType="string" />
+
+        </action>
+
+    </fragment>
+
+    <include app:graph="@navigation/success_nav_graph" />
+    <include app:graph="@navigation/unsuccess_nav_graph" />
+
 </navigation>

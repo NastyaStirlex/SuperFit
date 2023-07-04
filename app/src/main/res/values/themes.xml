@@ -1,9 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Theme.SuperFit" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
         <item name="android:alertDialogStyle">@style/StyledAlertDialogTheme</item>
-        <item name="android:colorAccent">@color/purple</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
     <style name="StyledAlertDialogTheme" parent="Theme.Material3.DayNight.Dialog">

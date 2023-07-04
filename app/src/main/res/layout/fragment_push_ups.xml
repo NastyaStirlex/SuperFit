@@ -19,6 +19,7 @@
         android:enabled="true"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/finish"
+        android:textColor="@color/white"
         android:textSize="24sp"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,7 +27,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/pushUpsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
@@ -39,7 +40,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/progressBar"
+        android:id="@+id/pushUpsProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
@@ -50,7 +51,7 @@
         app:indicatorSize="216dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/pushUpsTextView"
         app:trackThickness="4dp" />
 
     <TextView
@@ -62,13 +63,13 @@
         android:text="35"
         android:textColor="@color/white"
         android:textSize="64sp"
-        app:layout_constraintBottom_toBottomOf="@+id/progressBar"
-        app:layout_constraintEnd_toEndOf="@+id/progressBar"
-        app:layout_constraintStart_toStartOf="@+id/progressBar"
-        app:layout_constraintTop_toTopOf="@+id/progressBar" />
+        app:layout_constraintBottom_toBottomOf="@+id/pushUpsProgressBar"
+        app:layout_constraintEnd_toEndOf="@+id/pushUpsProgressBar"
+        app:layout_constraintStart_toStartOf="@+id/pushUpsProgressBar"
+        app:layout_constraintTop_toTopOf="@+id/pushUpsProgressBar" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/pushUpsTimesLeftTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="-16dp"
@@ -76,8 +77,8 @@
         android:text="@string/times_left"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/progressBar"
-        app:layout_constraintStart_toStartOf="@+id/progressBar"
+        app:layout_constraintEnd_toEndOf="@+id/pushUpsProgressBar"
+        app:layout_constraintStart_toStartOf="@+id/pushUpsProgressBar"
         app:layout_constraintTop_toBottomOf="@+id/pushUpsTimesTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/unsuccess_nav_graph"
+    app:startDestination="@id/unSuccessFragment">
+
+    <fragment
+        android:id="@+id/unSuccessFragment"
+        android:name="com.nastirlex.superfit.presentation.unsuccess.UnSuccessFragment"
+        android:label="fragment_unsuccess"
+        tools:layout="@layout/fragment_unsuccess" >
+
+        <argument
+            android:name="timesLeft"
+            app:argType="string" />
+
+        <argument
+            android:name="exerciseName"
+            app:argType="integer" />
+
+    </fragment>
+</navigation>

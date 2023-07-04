@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.nastirlex.superfit.R
@@ -50,6 +49,7 @@ class SquatsFragment : Fragment() {
 
         setupSensorManager()
         setupSensorListener()
+        setupOnBackButtonClick()
 
         setupSquatsStateObserver()
 
@@ -67,7 +67,7 @@ class SquatsFragment : Fragment() {
         timer = Timer()
         val task: TimerTask = timerTask {
             activity?.runOnUiThread {
-                showInfo()
+                makeExercise()
             }
         }
         timer.schedule(task, 0, 850)
@@ -147,7 +147,7 @@ class SquatsFragment : Fragment() {
         }
     }
 
-    private fun showInfo() {
+    private fun makeExercise() {
         val x = valuesAccel[0]
         val y = valuesAccel[1]
         val z = valuesAccel[2]
@@ -168,7 +168,6 @@ class SquatsFragment : Fragment() {
                 counter++
             }
 
-
         } else if (zChange < -4) {
             direction[1] = "UP"
             if (counter == 1) {
@@ -184,6 +183,12 @@ class SquatsFragment : Fragment() {
             }
         }
 
+    }
+
+    private fun setupOnBackButtonClick() {
+        binding.backImageButton.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
 }

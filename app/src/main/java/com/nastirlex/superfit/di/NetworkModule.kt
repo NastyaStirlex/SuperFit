@@ -3,6 +3,7 @@ package com.nastirlex.superfit.di
 import com.nastirlex.superfit.net.AuthorizationInterceptor
 import com.nastirlex.superfit.net.RefreshAuthenticator
 import com.nastirlex.superfit.net.service.AuthService
+import com.nastirlex.superfit.net.service.ProfileService
 import com.nastirlex.superfit.net.service.RefreshTokenService
 import com.nastirlex.superfit.net.service.TrainingService
 import dagger.Module
@@ -13,6 +14,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -40,6 +42,8 @@ object NetworkModule {
             addInterceptor(HttpLoggingInterceptor().setLevel(logLevel))
             addInterceptor(authorizationInterceptor)
             authenticator(refreshAuthenticator)
+            connectTimeout(30, TimeUnit.SECONDS)
+            readTimeout(30, TimeUnit.SECONDS)
         }.build()
     }
 
@@ -102,4 +106,9 @@ object NetworkModule {
     @Provides
     fun provideRefreshTokenService(@SimpleRetrofit retrofit: Retrofit): RefreshTokenService =
         retrofit.create(RefreshTokenService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideProfileService(@CommonRetrofit retrofit: Retrofit): ProfileService =
+        retrofit.create(ProfileService::class.java)
 }

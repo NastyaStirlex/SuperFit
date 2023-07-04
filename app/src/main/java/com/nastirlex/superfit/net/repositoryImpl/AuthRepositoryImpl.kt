@@ -22,6 +22,5 @@ class AuthRepositoryImpl @Inject constructor(private val authService: AuthServic
 
     override suspend fun checkTokenExpirationByGetTrainings(token: String): Response<Any> {
         return authService.checkTokenExpirationByGetTrainings("Bearer $token")
-
     }
 }

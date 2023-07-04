@@ -45,7 +45,7 @@
     <string name="network_error">Не удается подключиться к серверу.</string>
 
     <!-- Dialog Fragment -->
-    <string name="ok">OK</string>
+    <string name="positive_button_dialog_default">OK</string>
     <string name="preference_file_key">shared</string>
 
     <string name="exercise_dialog_title">Start the training?</string>
@@ -60,7 +60,7 @@
     <string name="seconds_left">SECONDS LEFT</string>
     <string name="meters_passed">METERS PASSED</string>
     <string name="go_home">Go home</string>
-    <string name="un_success"> times are missing. You can do it better!</string>
+    <string name="un_success_times_left">%1$d times are missing. You can do it better!</string>
 
     <!-- Sign In Code Fragment -->
     <string name="first">1</string>
@@ -73,4 +73,54 @@
     <string name="eighth">8</string>
     <string name="ninth">9</string>
 
+    <!-- Running Fragment -->
+    <string name="no_step_sensor">No Step sensor detected on this device</string>
+    <string name="permission_granted">StepCounter sensor permission is granted</string>
+    <string name="deny_permission">You have denied permissions permanently. " +
+                            "You can change it in app settings.\n\n" +
+                            "Would you like to open app settings?</string>
+
+    <string name="open_positive_button">Open</string>
+    <string name="title_dialog">Permission denied</string>
+    <string name="deny_forever">Permissions are denied forever</string>
+
+    <string name="title_dialog_default">Error</string>
+
+    <!-- My body Fragment -->
+    <string name="weight">%1$d kg</string>
+    <string name="height">%1$d cm</string>
+    <string name="edit">Edit</string>
+    <string name="my_progress">My Progress</string>
+    <string name="train_progress">Train progress</string>
+    <string name="statistics">Statistics</string>
+    <string name="undefined">Undefined</string>
+
+    <string name="cancel">CANCEL</string>
+    <string name="change">CHANGE</string>
+    <string name="edit_parameter_dialog_title">Change your %1$s</string>
+    <string name="weight_simple">weigth</string>
+    <string name="height_simple">height</string>
+    <string name="dialog_hint">New value</string>
+    <string name="weight_label">Weight</string>
+    <string name="height_label">Height</string>
+
+    <string name="save">Save</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+
+
+    <string name="error_dialog">Пожалуйста, введите значение</string>
+
+    <string name="january">January</string>
+    <string name="february">February</string>
+    <string name="march">March</string>
+    <string name="april">april</string>
+    <string name="may">May</string>
+    <string name="june">June</string>
+    <string name="july">July</string>
+    <string name="august">August</string>
+    <string name="september">September</string>
+    <string name="october">October</string>
+    <string name="november">November</string>
+    <string name="december">December</string>
 </resources>

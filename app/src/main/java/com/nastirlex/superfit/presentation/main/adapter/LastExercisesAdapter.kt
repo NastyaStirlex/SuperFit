@@ -57,6 +57,6 @@ class LastExercisesAdapter(private val lastExercises: List<TrainingDto>) :
     }
 
     override fun onBindViewHolder(holder: LastExercisesViewHolder, position: Int) {
-        holder.bind(lastExercises[position])
+        holder.bind(lastExercises[lastExercises.size - 1 - position])
     }
 }

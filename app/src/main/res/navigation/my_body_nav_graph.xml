@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_body_nav_graph"
+    app:startDestination="@id/myBodyFragment">
+
+    <fragment
+        android:id="@+id/myBodyFragment"
+        android:name="com.nastirlex.superfit.presentation.my_body.MyBodyFragment"
+        android:label="fragment_my_body"
+        tools:layout="@layout/fragment_my_body" >
+        <action
+            android:id="@+id/action_myBodyFragment_to_imageListFragment"
+            app:destination="@id/imageListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageListFragment"
+        android:name="com.nastirlex.superfit.presentation.imageList.ImageListFragment"
+        android:label="fragment_image_list"
+        tools:layout="@layout/fragment_image_list" />
+</navigation>

@@ -1,9 +1,7 @@
 package com.nastirlex.superfit.di
 
-import com.nastirlex.superfit.net.repository.AuthRepository
 import com.nastirlex.superfit.net.repositoryImpl.AuthRepositoryImpl
 import com.nastirlex.superfit.net.service.AuthService
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

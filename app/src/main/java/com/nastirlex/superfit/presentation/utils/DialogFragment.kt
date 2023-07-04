@@ -7,11 +7,16 @@ import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
 import com.nastirlex.superfit.R
 
-class MessageDialogFragment(private val message: Int) : DialogFragment() {
+class MessageDialogFragment(
+    private val message: Int,
+    private val title: Int = R.string.title_dialog_default,
+    private val positiveButton: Int = R.string.positive_button_dialog_default
+) : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
         AlertDialog.Builder(requireContext())
+            .setTitle(getString(title))
             .setMessage(getString(message))
-            .setPositiveButton(getString(R.string.ok)) { _, _ -> }
+            .setPositiveButton(getString(positiveButton)) { _, _ -> }
             .create()
 
 
